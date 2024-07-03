@@ -24,8 +24,8 @@
                 <div class="nk-content ">
                     <div class="nk-block nk-block-middle nk-auth-body  wide-xs">
                         <div class="brand-logo pb-4 text-center">
-                            <a href="html/index.html" class="logo-link">
-                                <img class="logo-light logo-img logo-img-lg" src="{{ asset('admin/images/lure_logo.svg')}}" srcset="{{ asset('admin/images/logo2x.png ')}} 2x" alt="logo">
+                            <a href="{{ route('admin.login') }}" class="logo-link">
+                                <img class="logo-img logo-img-lg" src="{{ asset('admin/images/lure_logo.svg')}}" srcset="{{ asset('admin/images/logo2x.png ')}} 2x" alt="logo">
                                 <!-- <img class="logo-dark logo-img logo-img-lg" src="{{ asset('admin//images/logo-dark.png')}}" srcset="{{ asset('admin//images/logo-dark2x.png')}} 2x" alt="logo-dark"> -->
                                 {{-- <h6>Admin Login</h6> --}}
                             </a>
