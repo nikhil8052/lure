@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('faqs', function (Blueprint $table) {
+        Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
-            $table->longText('question');
-            $table->longText('description');
+            $table->longText('name');
+            $table->string('image')->nullable();
+            $table->string('position')->nullable();
+            $table->string('company_name')->nullable();
+            $table->longText('description')->nullable();
             $table->string('is_displayed')->default(true);
-            $table->bigInteger('faq_order')->nullable();
+            $table->bigInteger('order')->nullable();
             $table->string('status')->default(true);
             $table->timestamps();
         });
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('faqs');
+        Schema::dropIfExists('testimonials');
     }
 };

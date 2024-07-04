@@ -22,9 +22,13 @@ class AdminDashController extends Controller
 
         $credentials = $request->only('email','password');
         if(Auth::attempt($credentials)){
-           if(Auth::user()->is_admin == 1) {
+            if(Auth::user()->is_admin == 1) {
                 return redirect()->route('admin.dashboard');
-           }
+            } else {
+                return redirect()->route('home');
+            }
+        } else {
+            return redirect()->back()->with('error','Invalid Credentials');
         }
         
     }

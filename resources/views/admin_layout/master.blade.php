@@ -16,7 +16,17 @@
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="{{ asset('admin/assets/css/dashlite.css?ver=3.1.2') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('admin/assets/css/theme.css?ver=3.1.2') }}">
+
+    {{-- ckeditor --}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+
+    <!-- jquery cnd links  -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" ></script>
+    {{-- <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    {{-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css"> --}}
 
     <style>
         #loading-screen {
@@ -30,6 +40,9 @@
             top: 0;
             left: 0;
             z-index: 9999;
+        }
+        .ck-editor__editable_inline {
+            min-height: 150px; 
         }
     </style>
 </head>
@@ -65,6 +78,26 @@
                                 <li class="nk-menu-heading">
                                     <h6 class="overline-title text-primary-alt">Dashboard</h6>
                                 </li>
+                                <li class="nk-menu-item has-sub">
+                                    <a href="{{ route('web.home.page') }}" class="nk-menu-link nk-menu-toggle">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-files"></em></span>
+                                        <span class="nk-menu-text">Web Pages</span>
+                                    </a>
+                                    <ul class="nk-menu-sub" >
+                                        <li class="nk-menu-item">
+                                            <a href="{{ route('web.home.page') }}" class="nk-menu-link"><span class="nk-menu-text">Home</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="{{ route('web.about.page') }}" class="nk-menu-link"><span class="nk-menu-text">About</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nk-menu-item active current-page">
+                                    <a href="{{ route('website.testimonials') }}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-users-fill"></em></span>
+                                        <span class="nk-menu-text">Testimonials</span>
+                                    </a>
+                                </li>
                                 <li class="nk-menu-item active current-page">
                                     <a href="{{ route('website.Faqs') }}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-file-docs"></em></span>
@@ -77,7 +110,15 @@
                                         <span class="nk-menu-text">Settings</span>
                                     </a>
                                 </li>
-                                
+                                <li class="nk-menu-heading">
+                                    <h6 class="overline-title text-primary-alt">Account</h6>
+                                </li>
+                                <li class="nk-menu-item active current-page">
+                                    <a href="{{ route('admin.profile') }}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-account-setting-fill"></em></span>
+                                        <span class="nk-menu-text">Account Settings</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -257,7 +298,7 @@
     @if (Session::get('success'))
         <script>
             toastr.clear();
-            NioApp.Toast('{{ Session::get('success') }}', 'info', {
+            NioApp.Toast('{{ Session::get('success') }}', 'success', {
                 position: 'top-right'
             });
         </script>

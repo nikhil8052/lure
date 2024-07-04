@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class SettingsController extends Controller
+class TestimonialsController extends Controller
 {
     public function index()
     {
-        return view('admin.settings.index');
+        $faqs = [];
+        return view('admin.testimonial.index',compact('faqs'));
     }
-
 }

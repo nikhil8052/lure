@@ -3,7 +3,9 @@
 use App\Http\Controllers\Admin\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminDashController;
+use App\Http\Controllers\Admin\FaqsController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\TestimonialsController;
 use App\Http\Controllers\Front\FrontController;
 
 
@@ -25,5 +27,15 @@ Route::group(['middleware' => ['is_admin']], function () {
     
     Route::get('/admin-dashboard/settings',[SettingsController::class,'index'])->name('website.settings');
 
-    Route::get('/admin-dashboard/faqs',[SettingsController::class,'faqs'])->name('website.Faqs');
+    Route::get('/admin-dashboard/faqs',[FaqsController::class,'index'])->name('website.Faqs');
+    Route::post('/admin-dashboard/faqs/add',[FaqsController::class,'saveFaq'])->name('Faq.add');
+    Route::get('admin-dashboard/faq-record/{id}',[FaqsController::class,'getRecord'])->name('get.faq');
+    Route::get('admin-dashboard/faq-record-remove/{id}',[FaqsController::class,'removeFaq'])->name('remove.faq');
+    Route::post('/update-faq-order',[FaqsController::class,'updateOrder']);
+    Route::get('/change-faq-status/{id}',[FaqsController::class,'changeStatus']);
+
+    Route::get('admin-dashboard/testimonials',[TestimonialsController::class,'index'])->name('website.testimonials');
+
+    Route::get('admin-dashboard/home-content',[SettingsController::class,'homePage'])->name('web.home.page');
+    Route::get('admin-dashboard/about-content',[SettingsController::class,'homePage'])->name('web.about.page');
 });

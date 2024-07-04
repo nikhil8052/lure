@@ -9,7 +9,7 @@
                         <div class="card-inner">
                             <div class="preview-block">
                                 <div class="d-flex justify-content-between">
-                                    <span class="preview-title-lg overline-title">Add Faqs</span>
+                                    <span class="preview-title-lg overline-title">Add Testimonial</span>
                                     <span style="cursor: pointer;" class="close"><em class="icon ni ni-cross-circle"></em></span>
                                 </div>
                                 <div class="row gy-4">
@@ -17,33 +17,50 @@
                                         <form action="{{ route('Faq.add')}}" method="POST" id="form-data" class="gy-3 form-settings" >
                                             @csrf
                                             <input type="hidden" name="id" id="id" >
-                                            <div class="row g-3 align-center">
-                                                <div class="col-lg-5">
+                                            <div class="row gy-4">
+                                                <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <label class="form-label" for="question">Question</label>
-                                                        <span class="form-note">Most asked Questions.</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-7">
-                                                    <div class="form-group">
+                                                        <label class="form-label" for="name">Name</label>
                                                         <div class="form-control-wrap">
-                                                            <textarea style="min-height: 60px" class="form-control" id="question" name="question" placeholder="what your team do for us? "></textarea>
+                                                            <div class="form-icon form-icon-left">
+                                                                <em class="icon ni ni-user"></em>
+                                                            </div>
+                                                            <input type="text" name="name" class="form-control" id="name" placeholder="Enter Name">
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            
-                                            <div class="row g-3 align-center">
-                                                <div class="col-lg-5">
+                                                <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <label class="form-label" for="description">Description</label>
-                                                        <span class="form-note">Describe your Detail.</span>
+                                                        <label class="form-label" for="image">Image</label>
+                                                        <div class="form-control-wrap">
+                                                            <div class="form-file">
+                                                                <input type="file" name="image" class="form-file-input" id="image">
+                                                                <label class="form-file-label" for="image">Choose file</label>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-7" >
+                                                <div class="col-sm-6">
                                                     <div class="form-group">
+                                                        <label class="form-label" for="position">Position</label>
                                                         <div class="form-control-wrap">
-                                                            <textarea class="form-control" id="description" name="description" placeholder="Lorem ipsum....."></textarea>
+                                                            <input type="text" name="position" class="form-control" id="position" placeholder="Position">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="company">Company/Organization</label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" name="company" class="form-control" id="company" placeholder="Company/Organization Name">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="statement">Statement</label>
+                                                        <div class="form-control-wrap">
+                                                            <textarea class="form-control no-resize" id="statement" placeholder="Lorem ipsum....."></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -61,8 +78,8 @@
                     </div>
                     <div class="nk-block-head">
                         <div class="nk-block-head-content d-flex justify-content-between">
-                            <h4 class="nk-block-title">FAQs</h4>
-                            <button class="btn btn-primary" id="addnew">Add Faq</button>
+                            <h4 class="nk-block-title">Testimonials</h4>
+                            <button class="btn btn-primary" id="addnew">Add Testimonial</button>
                         </div>
                     </div>
                     <div class="nk-block">
@@ -72,7 +89,8 @@
                                     <table class="nowrap nk-tb-list nk-tb-ulist" data-auto-responsive="true">
                                     <thead>
                                         <tr class="nk-tb-item nk-tb-head">
-                                            <th class="nk-tb-col"><span class="sub-text">Question</span></th>
+                                            <th class="nk-tb-col"><span class="sub-text">Name</span></th>
+                                            <th class="nk-tb-col"><span class="sub-text">Company/Organization</span></th>
                                             <th class="nk-tb-col"><span class="sub-text"></span></th>
                                             <th class="nk-tb-col nk-tb-col-tools ">
                                                 Display
@@ -85,6 +103,13 @@
                                     <tbody id="sortable" >
                                         @foreach($faqs as $faq )
                                             <tr class="nk-tb-item" data-id="{{ $faq->id }}">
+                                                <td class="nk-tb-col">
+                                                    <div class="user-card">
+                                                        <div class="user-info">
+                                                            <span class="tb-lead">{{ Illuminate\Support\Str::words($faq->question ?? '', 10, '...') }}</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
                                                 <td class="nk-tb-col">
                                                     <div class="user-card">
                                                         <div class="user-info">
