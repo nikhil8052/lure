@@ -81,14 +81,14 @@
                                 <li class="nk-menu-item has-sub">
                                     <a href="{{ route('web.home.page') }}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-files"></em></span>
-                                        <span class="nk-menu-text">Web Pages</span>
+                                        <span class="nk-menu-text">Web Content</span>
                                     </a>
                                     <ul class="nk-menu-sub" >
                                         <li class="nk-menu-item">
-                                            <a href="{{ route('web.home.page') }}" class="nk-menu-link"><span class="nk-menu-text">Home</span></a>
+                                            <a href="{{ route('web.models') }}" class="nk-menu-link"><span class="nk-menu-text">Models</span></a>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <a href="{{ route('web.about.page') }}" class="nk-menu-link"><span class="nk-menu-text">About</span></a>
+                                            <a href="{{ route('web.services') }}" class="nk-menu-link"><span class="nk-menu-text">Services</span></a>
                                         </li>
                                     </ul>
                                 </li>

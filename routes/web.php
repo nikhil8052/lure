@@ -5,13 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminDashController;
 use App\Http\Controllers\Admin\FaqsController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\SiteContentController;
 use App\Http\Controllers\Admin\TestimonialsController;
 use App\Http\Controllers\Front\FrontController;
 
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('home');
 
 Route::get('/admin/login',[AdminDashController::class,'AdminLogin'])->name('admin.login');
 Route::post('/login-process',[AdminDashController::class,'LoginProcc'])->name('login.process');
@@ -26,6 +27,7 @@ Route::group(['middleware' => ['is_admin']], function () {
     Route::post('/admin-dashboard/password/update',[ProfileController::class,'PasswordUpdate'])->name('admin.password.update');
     
     Route::get('/admin-dashboard/settings',[SettingsController::class,'index'])->name('website.settings');
+    Route::post('/admin-dashboard/setting/update',[SettingsController::class,'UpdateSetting'])->name('update.setting');
 
     Route::get('/admin-dashboard/faqs',[FaqsController::class,'index'])->name('website.Faqs');
     Route::post('/admin-dashboard/faqs/add',[FaqsController::class,'saveFaq'])->name('Faq.add');
@@ -35,7 +37,24 @@ Route::group(['middleware' => ['is_admin']], function () {
     Route::get('/change-faq-status/{id}',[FaqsController::class,'changeStatus']);
 
     Route::get('admin-dashboard/testimonials',[TestimonialsController::class,'index'])->name('website.testimonials');
+    Route::post('/admin-dashboard/testimonials/add',[TestimonialsController::class,'saveTestimonial'])->name('testimonials.add');
+    Route::get('admin-dashboard/testimonials-record/{id}',[TestimonialsController::class,'getRecord'])->name('get.testimonials');
+    Route::get('admin-dashboard/testimonials-record-remove/{id}',[TestimonialsController::class,'removeTestimonial'])->name('remove.testimonials');
+    Route::post('/update-testimonial-order',[TestimonialsController::class,'updateOrder']);
+    Route::get('/change-testimonial-status/{id}',[TestimonialsController::class,'changeStatus']);
 
-    Route::get('admin-dashboard/home-content',[SettingsController::class,'homePage'])->name('web.home.page');
-    Route::get('admin-dashboard/about-content',[SettingsController::class,'homePage'])->name('web.about.page');
+    Route::get('admin-dashboard/home-content',[SiteContentController::class,'homePage'])->name('web.home.page');
+    Route::get('admin-dashboard/about-content',[SiteContentController::class,'aboutPage'])->name('web.about.page');
+
+    Route::get('admin-dashboard/services',[SiteContentController::class,'services'])->name('web.services');
+    Route::post('admin-dashboard/services/add',[SiteContentController::class,'addServices'])->name('add.services');
+
+    Route::get('admin-dashboard/models',[SiteContentController::class,'models'])->name('web.models');
+    Route::post('admin-dashboard/model/add',[SiteContentController::class,'AddModels'])->name('add.models');
+    Route::get('admin-dashboard/model-image-remove/{id}',[SiteContentController::class,'ModelRemove']);
+    Route::get('/change-model-status/{id}',[SiteContentController::class,'changeModelStatus']);
+
 });
+
+Route::get('/',[FrontController::class,'index'])->name('home');
+Route::get('/apply-now',[FrontController::class,'applyNow'])->name('apply.now');
