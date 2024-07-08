@@ -22,7 +22,7 @@
                         <div class="row">
                             <div class="col-md-6 button_col">
                                 <div class="scroll_button_wrap">
-                                    <button class="scroll_btn"><img src="images/buttonsvg.svg"></button>
+                                    <button class="scroll_btn"><img src="{{ asset('lure/images/buttonsvg.svg') }}"></button>
                                     <a class="scroll_btn" href="#about_section"> Scroll Down</a>
                                 </div>
                             </div>
@@ -436,97 +436,80 @@
         </div>
     </div>
 </section>
-<section class="our_result_section p100 p-t-0 moving_text" id="result_section">
-    <div class="result_flip_wrapper">
-        <div class="flip_slider_wrap flip_slider">
-            <div class="section_head moving_text_container">
-                <h2 class="moving_text_item">Some Of Our Results</h2>
-            </div>
-            <div class="container">
-                <div class="alphaer">
-                    <div class="slider_buttons">
-                        <div class="button_div"><button class="alphaback btn text-white h3"><i class="fas fa-chevron-up"></i></button></div>
-                        <div class="button_div"><button class="alphanext btn text-white h3"><i class="fas fa-chevron-down"></i></button></div>
-                    </div>
-                    <div class="alphas">
-                        <div class="card alpha blog-sec">
-                            <div class="flip_slide">
-                                <div class="result_flip_box">
-                                    <div class="result_flip_inner">
-                                        <div class="result_row row">
-                                            <div class="col-md-6 result_text_col">
-                                                <div class="result_text">
-                                                    <h3>Creator consulting </h3>
-                                                    <p>Discover the power of a fusion between strategy, seductive texting, and top-tier marketing expertise. We delve deep to identify the forces shaping your account, unveiling opportunities that drive impressive revenue growth. Together, we'll craft a brand that truly reflects your success and vision.</p>
-                                                    <div class="cta_wrap mt-10">
-                                                        <a href="{{ route('apply.now') }}" class="cta_btn cta_white_text">Apply Now</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 result_media_col">
-                                                <div class="result_image">
-                                                    <img src="{{ asset('lure/images/result_grph.png') }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+@if(isset($results) && $results != null)
+    <section class="our_result_section p100 p-t-0 moving_text" id="result_section">
+        <div class="result_flip_wrapper">
+            <div class="flip_slider_wrap flip_slider">
+                <div class="section_head moving_text_container">
+                    <h2 class="moving_text_item">{{ $results->title ?? 'Some Of Our Results' }}</h2>
+                </div>
+                <div class="container">
+                    <div class="alphaer">
+                        <div class="slider_buttons">
+                            <div class="button_div"><button class="alphaback btn text-white h3"><i class="fas fa-chevron-up"></i></button></div>
+                            <div class="button_div"><button class="alphanext btn text-white h3"><i class="fas fa-chevron-down"></i></button></div>
                         </div>
-                        <div class="card alpha blog-sec">
-                            <div class="flip_slide">
-                                <div class="result_flip_box">
-                                    <div class="result_flip_inner">
-                                        <div class="result_row row">
-                                            <div class="col-md-6 result_text_col">
-                                                <div class="result_text">
-                                                    <h3>Magnetize your audience with tailored strategies</h3>
-                                                    <p>Everyone can create a ripple on social media. We create waves by connecting you & your content with the right target niche and navigating them through an expertly-crafted funnel.</p>
-                                                    <div class="cta_wrap mt-10">
-                                                        <a href="{{ route('apply.now') }}" class="cta_btn cta_white_text">Apply Now</a>
+                        <div class="alphas">
+                            @if(isset($results->results) && $results->results != null  && !empty(json_decode($results->results)))
+                                @foreach (json_decode($results->results,true) as $result)
+                                    <div class="card alpha blog-sec">
+                                        <div class="flip_slide">
+                                            <div class="result_flip_box">
+                                                <div class="result_flip_inner">
+                                                    <div class="result_row row">
+                                                        <div class="col-md-6 result_text_col">
+                                                            <div class="result_text">
+                                                                <h3>{{ $result['heading'] }} </h3>
+                                                                <p>{!! $result['description'] !!}</p>
+                                                                <div class="cta_wrap mt-10">
+                                                                    <a href="{{ route('apply.now') }}" class="cta_btn cta_white_text">Apply Now</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 result_media_col">
+                                                            <div class="result_image">
+                                                                <img src="{{ asset('Our_result') }}/{{ $result['image'] }}">
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 result_media_col">
-                                                <div class="result_image">
-                                                    <img src="{{ asset('lure/images/result.png') }}">
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <div class="card alpha blog-sec">
+                                    <div class="flip_slide">
+                                        <div class="result_flip_box">
+                                            <div class="result_flip_inner">
+                                                <div class="result_row row">
+                                                    <div class="col-md-6 result_text_col">
+                                                        <div class="result_text">
+                                                            <h3>Creator consulting </h3>
+                                                            <p>Discover the power of a fusion between strategy, seductive texting, and top-tier marketing expertise. We delve deep to identify the forces shaping your account, unveiling opportunities that drive impressive revenue growth. Together, we'll craft a brand that truly reflects your success and vision.</p>
+                                                            <div class="cta_wrap mt-10">
+                                                                <a href="{{ route('apply.now') }}" class="cta_btn cta_white_text">Apply Now</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 result_media_col">
+                                                        <div class="result_image">
+                                                            <img src="{{ asset('lure/images/result_grph.png') }}">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="card alpha blog-sec">
-                            <div class="flip_slide">
-                                <div class="result_flip_box">
-                                    <div class="result_flip_inner">
-                                        <div class="result_row row">
-                                            <div class="col-md-6 result_text_col">
-                                                <div class="result_text">
-                                                    <h3>In-House Chatters</h3>
-                                                    <p>We're reshaping engagement with an emphasis on genuine bond building with each fan, treating them MORE than a real person. Our in-house USA team ensures that fans don't feel sold to, but instead, are naturally asking for further content & engagement.</p>
-                                                    <div class="cta_wrap mt-10">
-                                                        <a href="{{ route('apply.now') }}" class="cta_btn cta_white_text">Apply Now</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 result_media_col">
-                                                <div class="result_image">
-                                                    <img src="{{ asset('lure/images/result (2).png') }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+@endif
 <div class="divider p100">
     <div class="container-fluid text-center">
         <img src="{{ asset('lure/images/line.png') }}">
@@ -561,7 +544,7 @@
                                 <p>TikTok</p>
                             </div>
                             <div class="cr_icon_box ">
-                                <img src="{{ asset('lure/images/Redditgif.gi') }}" class="">
+                                <img src="{{ asset('lure/images/Redditgif.gif') }}" class="">
                                 <p>Reddit</p>
                             </div>
                         </div>

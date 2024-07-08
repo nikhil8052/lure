@@ -79,7 +79,7 @@
                                     <h6 class="overline-title text-primary-alt">Dashboard</h6>
                                 </li>
                                 <li class="nk-menu-item has-sub">
-                                    <a href="{{ route('web.home.page') }}" class="nk-menu-link nk-menu-toggle">
+                                    <a href="{{ route('web.results') }}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-files"></em></span>
                                         <span class="nk-menu-text">Web Content</span>
                                     </a>
@@ -89,6 +89,21 @@
                                         </li>
                                         <li class="nk-menu-item">
                                             <a href="{{ route('web.services') }}" class="nk-menu-link"><span class="nk-menu-text">Services</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="{{ route('web.results') }}" class="nk-menu-link"><span class="nk-menu-text">Our Results</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nk-menu-item has-sub">
+                                    <a href="{{ route('web.home.page') }}" class="nk-menu-link nk-menu-toggle">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-files"></em></span>
+                                        <span class="nk-menu-text">Web Pages</span>
+                                    </a>
+                                    <ul class="nk-menu-sub" >
+                                      
+                                        <li class="nk-menu-item">
+                                            <a href="{{ route('web.home.page') }}" class="nk-menu-link"><span class="nk-menu-text">Home Page</span></a>
                                         </li>
                                     </ul>
                                 </li>

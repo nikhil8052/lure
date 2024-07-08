@@ -1,151 +1,95 @@
 @extends('front_layout.master')
 @section('content')
-    <section class="applynow_section ">
-        <div class="bg_video">
-            <video class="bg_accordion" width="100%" autoplay loop muted playsinline id="bg-vid">
-                <source src="{{ asset('lure/images/Aura2.mp4') }}" type="video/mp4">
-            </video>
-        </div>
-        <div class="container">
-            <siv class="section_head text-center">
-                <h2>Are you an influencer looking for <br>representation or a brand looking for <br>partnership?</h2>
-            </siv>
-
-            <div class="container outer_zindex">
-                <div class="outer_tab">
-                    <div class="tab_btn">
-                        <button class="tablinks active" onclick="lure(event, 'INFLUENCER')" id="defaultOpen" href="#">
-                            INFLUENCER
-                        </button>
-                        <button class="tablinks brand" onclick="lure(event, 'BRAND')" href="#">
-                            BRAND
-                        </button>
-                    </div>
-                </div>
-
-                <div class="  table_container  tabcontent active" id="INFLUENCER">
-                    <div class="table_opacity">
-
-                        <div class="table_head">
-                            <h2>
-                                Become a Lure Model
-                            </h2>
-                            <p>
-                                Interested in being represented by Lure? Fill out the form below and tell us a little
-                                bit more about who you are!
-                            </p>
-
+<section class="applynow_section">
+    <div class="bg_video">
+        <video class="bg_accordion" width="100%" autoplay loop muted playsinline id="bg-vid">
+            <source src="{{ asset('lure/images/Aura2.mp4') }}" type="video/mp4">
+        </video>
+    </div>
+    <div class="container">
+        <div class="container outer_zindex">
+            <div class="table_container">
+                <div class="table_opacity">
+                  
+                    <div class="table_content apply_form" id="form-container">
+                        <!-- Step 1 -->
+                        <div class="form-step active">
+                            <div class="table_head">
+                                <h2>Hey there!</h2>
+                                <p>Here is the queen</p>
+                            </div>
+                            <p class="label">Are you Applying for:</p>
+                            <div class="form-group custom_radio">
+                                <input type="radio" id="production" name="application" value="Production">
+                                <label for="production">Production</label>
+                            </div>
+                            <div class="form-group custom_radio">
+                                <input type="radio" id="management" name="application" value="Management">
+                                <label for="management">Management</label>
+                            </div>
+                            <div class="step_button_wrapper">
+                                <button class="next-btn cta_btn">Next</button>
+                            </div>
                         </div>
-
-                        <div class="table_content">
+                        <!-- Step 2 -->
+                        <div class="form-step">
                             <div class="form-group">
-                                <input type="text" id="" placeholder="FullName *">
+                                <label class="label" for="name">What's your name?</label>
+                                <input type="text" id="name" placeholder="Full Name *">
                             </div>
                             <div class="form-group">
-                                <input type="text" id="" placeholder="Email *">
+                                <label class="label" for="email">What's your email address?</label>
+                                <input type="email" id="email" placeholder="Email *">
                             </div>
-                            <div class="form-group">
-                                <input type="text" id="" placeholder="Phone Number *">
+                            <div class="step_button_wrapper">
+                                <button class="prev-btn cta_btn">Previous</button>
+                                <button class="next-btn cta_btn">Next</button>
                             </div>
-                            <div class="form-group">
-                                <input type="text" id="" placeholder="Instagram Username *">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="" placeholder="Number of Instagram Followers *">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="" placeholder="Tiktok Username *">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="" placeholder="Number of TikTok Followers *"> 
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="" placeholder="Where are you located? *">
-                            </div>
-                            <div class="form-group">
-                                <textarea rows="3" cols="68"
-                                placeholder="Why are you interested in representation? *"></textarea> 
-                            </div>
-                            <div class="form-group">
-                                <textarea rows="3" cols="68" placeholder="How did you hear about us?"></textarea>
-                            </div> 
                         </div>
-
-                        <div class=" sub_btn">
-                            <button href="#" class="cta_btn">
-                                SUMBIT
-                            </button>
+                        <!-- Step 3 -->
+                        <div class="form-step">
+                            <div class="form-group">
+                                <label class="label" for="contact-method">What is the best way to reach you?</label>
+                                <input type="text" id="contact-method" placeholder="Email/Number/Telegram *">
+                            </div>
+                            <div class="form-group">
+                                <label class="label" for="instagram">What is your Instagram account?</label>
+                                <input type="text" id="instagram" placeholder="Instagram Username *">
+                            </div>
+                            <div class="step_button_wrapper">
+                                <button class="prev-btn cta_btn">Previous</button>
+                                <button class="next-btn cta_btn">Next</button>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class=" table_container  tabcontent" id="BRAND">
-                    <div class="table_opacity">
-
-                        <div class="table_head">
-                            <h2>
-                                Become a Brand Model
-                            </h2>
-                            <p>
-                                Interested in being represented by Lure? Fill out the form below and tell us a little
-                                bit
-                                more about who you are!
-                            </p>
-
+                        <!-- Step 4 -->
+                        <div class="form-step">
+                            <p class="label">Are you available to travel?</p>
+                            <div class="form-group custom_radio">
+                                <input type="radio" id="travel-yes" name="travel" value="Yes">
+                                <label for="travel-yes">Yes</label>
+                            </div>
+                            <div class="form-group custom_radio">
+                                <input type="radio" id="travel-no" name="travel" value="No">
+                                <label for="travel-no">No</label>
+                            </div>
+                            <div class="step_button_wrapper">
+                                <button class="prev-btn cta_btn">Previous</button>
+                                <button class="next-btn cta_btn">Complete</button>
+                            </div>
                         </div>
-
-                        <div class="table_content">
-                            <div class="form-group">
-                                <input type="text" id="" placeholder="FullName *">
+                        <!-- Loading Screen -->
+                        <div class="form-step">
+                            <div class="complete_form_notification">
+                                <div class="loading-animation">
+                                    <img src="{{ asset('lure/images/gif_logo.gif') }}" alt="Lure">
+                                </div>
+                                <p>Thank you for applying.<br>We will reach out to you as soon as we can.</p>
                             </div>
-                            <div class="form-group">
-                                <input type="text" id="" placeholder="Email *">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="" placeholder="Phone Number *">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="" placeholder="Brand Name *">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="" placeholder="Brand Instagram *">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="" placeholder="Brand Website *">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="" placeholder="Budget *">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id=""
-                                placeholder="If you are interested in any particular influencers, please list them here. *">
-                            </div>
-                            <div class="form-group">
-                                <textarea rows="3" cols="68" placeholder="Please explain what you are looking for. *"></textarea>
-                            </div>   
-                        </div>
-                        <div class="sub_btn">
-                            <button href="#" class="cta_btn">
-                                SUMBIT
-                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <script>
-        function lure(evt, cityName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(cityName).style.display = "block";
-            evt.currentTarget.className += " active";
-        }
-    </script>
+    </div>
+</section>
 @endsection

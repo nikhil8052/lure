@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <!-- bootstrap cdn -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        crossorigin="anonymous">
+    <!-- fonts -->
+    <link rel="stylesheet" href="fonts/satoshi/stylesheet.css">
+    <link rel="stylesheet" href="fonts/Nohemi/stylesheet.css">
+    <!-- css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+    <link rel="stylesheet" href="css/custom.css">
+
+    <title>Apply Now</title>
+</head>
+
+<body>
+<header class="site_header" id="site_header">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg">
+                <div class="logo">
+                    <a class="navbar-brand" href="#">
+                        <img src="images/logo_pink.svg" alt="">
+                    </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="bar bar1"></span>
+                    <span class="bar bar2"></span>
+                    <span class="bar bar3"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about_section">About</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#services_section">Services</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#result_section">Results</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#model_section">Our Models </a>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#faq_block">FAQ</a>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#footer_section">Contact</a>
+                        </li>
+
+                    </ul>
+                    <div class="header_btn">
+                        <a href="" class="cta_btn">Apply Now</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <section class="applynow_section">
+        <div class="bg_video">
+            <video class="bg_accordion" width="100%" autoplay loop muted playsinline id="bg-vid">
+                <source src="images/Aura2.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="container">
+            <div class="container outer_zindex">
+                <div class="table_container">
+                    <div class="table_opacity">
+                      
+                        <div class="table_content apply_form" id="form-container">
+                            <!-- Step 1 -->
+                            <div class="form-step active">
+                                <div class="table_head">
+                                    <h2>Hey there!</h2>
+                                    <p>Here is the queen</p>
+                                </div>
+                                <p class="label">Are you Applying for:</p>
+                                <div class="form-group custom_radio">
+                                    <input type="radio" id="production" name="application" value="Production">
+                                    <label for="production">Production</label>
+                                </div>
+                                <div class="form-group custom_radio">
+                                    <input type="radio" id="management" name="application" value="Management">
+                                    <label for="management">Management</label>
+                                </div>
+                                <div class="step_button_wrapper">
+                                    <button class="next-btn cta_btn">Next</button>
+                                </div>
+                            </div>
+                            <!-- Step 2 -->
+                            <div class="form-step">
+                                <div class="form-group">
+                                    <label class="label" for="name">What's your name?</label>
+                                    <input type="text" id="name" placeholder="Full Name *">
+                                </div>
+                                <div class="form-group">
+                                    <label class="label" for="email">What's your email address?</label>
+                                    <input type="email" id="email" placeholder="Email *">
+                                </div>
+                                <div class="step_button_wrapper">
+                                    <button class="prev-btn cta_btn">Previous</button>
+                                    <button class="next-btn cta_btn">Next</button>
+                                </div>
+                            </div>
+                            <!-- Step 3 -->
+                            <div class="form-step">
+                                <div class="form-group">
+                                    <label class="label" for="contact-method">What is the best way to reach you?</label>
+                                    <input type="text" id="contact-method" placeholder="Email/Number/Telegram *">
+                                </div>
+                                <div class="form-group">
+                                    <label class="label" for="instagram">What is your Instagram account?</label>
+                                    <input type="text" id="instagram" placeholder="Instagram Username *">
+                                </div>
+                                <div class="step_button_wrapper">
+                                    <button class="prev-btn cta_btn">Previous</button>
+                                    <button class="next-btn cta_btn">Next</button>
+                                </div>
+                            </div>
+                            <!-- Step 4 -->
+                            <div class="form-step">
+                                <p class="label">Are you available to travel?</p>
+                                <div class="form-group custom_radio">
+                                    <input type="radio" id="travel-yes" name="travel" value="Yes">
+                                    <label for="travel-yes">Yes</label>
+                                </div>
+                                <div class="form-group custom_radio">
+                                    <input type="radio" id="travel-no" name="travel" value="No">
+                                    <label for="travel-no">No</label>
+                                </div>
+                                <div class="step_button_wrapper">
+                                    <button class="prev-btn cta_btn">Previous</button>
+                                    <button class="next-btn cta_btn">Complete</button>
+                                </div>
+                            </div>
+                            <!-- Loading Screen -->
+                            <div class="form-step">
+                                <div class="complete_form_notification">
+                                    <div class="loading-animation">
+                                        <img src="images/gif_logo.gif" alt="Lure">
+                                    </div>
+                                    <p>Thank you for applying.<br>We will reach out to you as soon as we can.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+
+    <footer class="footer_sec p_140" id="footer_section">
+        <div class="container">
+            <div class="footer_wrapper">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="footer-head">
+                            <h2>Email Updates</h2>
+                            <p>Enter your email below to subscribe to our monthly newsletter.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="email_wrapper">
+                            <div class="webflow-style-input">
+                                <input class="" type="email" placeholder="Your email address"></input>
+                                <button type="submit">Subscribe Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="site_footer p_100">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="footer-details">
+                            <div class="footer-logo">
+                                <img src="images/footer-log.png" alt="">
+                            </div>
+                            <p>Our highly experienced team aids our clients in achieving their full potential on social
+                                media platforms. We strive to make your dreams a reality by maximizing your online
+                                traffic, growing your personal brand awareness, and ultimately reaching your highest
+                                earning potential.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="link_footer">
+                            <h5>Quick Links</h5>
+                            <ul>
+                                <li><a href="#site_header">Home</a></li>
+                                <li><a href="#model_section">Our Models</a></li>
+                                <li><a href="#about_section">About</a></li>
+                                <li><a href="#faq_block">FAQ</a></li>
+                                <li><a href="#services_section">Services</a></li>
+                                <li><a href="#footer_section">Contact</a></li>
+                                <li><a href="#result_section">Results</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="link_footer connect_us">
+                            <h5>Connect with us</h5>
+                            <ul>
+                                <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-linkedin-in"></i></a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="lemon_slide2">
+            <div class="lemon_cont2">
+                <h2>Achieve More, Together.</h2>
+            </div>
+        </div>
+        <div class="bottom_footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="copy_right">
+                            <p>© 2024 LURE. All Rights Reserved.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="arrow_top">
+                            <a href="#site_header">Back to top <img src="images/arrow.png" alt=""></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+    <script src="js/custom.js"></script>
+</body>
+
+</html>

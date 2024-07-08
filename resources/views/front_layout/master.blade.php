@@ -57,24 +57,24 @@
                             <a class="nav-link" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#about_section">About</a>
+                            <a class="nav-link"  href="{{ request()->routeIs('home') ? '#about_section' : url('/#about_section') }}">About</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#services_section">Services</a>
+                            <a class="nav-link" href="{{ request()->routeIs('home') ? '#services_section' : url('/#services_section') }}">Services</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#result_section">Results</a>
+                            <a class="nav-link" href="{{ request()->routeIs('home') ? '#result_section' : url('/#result_section') }}">Results</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#model_section">Our Models </a>
-                        </li>
-
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#faq_block">FAQ</a>
+                            <a class="nav-link" href="{{ request()->routeIs('home') ? '#model_section' : url('/#model_section') }}" >Our Models </a>
                         </li>
 
                         <li class="nav-item active">
-                            <a class="nav-link" href="#footer_section">Contact</a>
+                            <a class="nav-link" href="{{ request()->routeIs('home') ? '#faq_block' : url('/#faq_block') }}">FAQ</a>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ request()->routeIs('home') ? '#footer_section' : url('/#footer_section') }}" >Contact</a>
                         </li>
                     </ul>
                     <div class="header_btn">

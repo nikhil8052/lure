@@ -44,10 +44,15 @@ Route::group(['middleware' => ['is_admin']], function () {
     Route::get('/change-testimonial-status/{id}',[TestimonialsController::class,'changeStatus']);
 
     Route::get('admin-dashboard/home-content',[SiteContentController::class,'homePage'])->name('web.home.page');
+    Route::post('admin-dashboard/home-content/update',[SiteContentController::class,'homeContentUpdate'])->name('home.content.update');
+    Route::post('admin-dashboard/remove-logo',[SiteContentController::class,'removelogo'])->name('remove.logo');
     Route::get('admin-dashboard/about-content',[SiteContentController::class,'aboutPage'])->name('web.about.page');
 
     Route::get('admin-dashboard/services',[SiteContentController::class,'services'])->name('web.services');
     Route::post('admin-dashboard/services/add',[SiteContentController::class,'addServices'])->name('add.services');
+
+    Route::get('admin-dashboard/results',[SiteContentController::class,'results'])->name('web.results');
+    Route::post('admin-dashboard/result/add',[SiteContentController::class,'addresults'])->name('add.results');
 
     Route::get('admin-dashboard/models',[SiteContentController::class,'models'])->name('web.models');
     Route::post('admin-dashboard/model/add',[SiteContentController::class,'AddModels'])->name('add.models');

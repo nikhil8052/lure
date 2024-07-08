@@ -12,7 +12,35 @@ $(window).scroll(function(){
   }
 });
 
+// stepo form
 
+document.addEventListener('DOMContentLoaded', function () {
+  const nextBtns = document.querySelectorAll('.next-btn');
+  const prevBtns = document.querySelectorAll('.prev-btn');
+  const formSteps = document.querySelectorAll('.form-step');
+  let formStepIndex = 0;
+
+  nextBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+          formSteps[formStepIndex].classList.remove('active');
+          formStepIndex++;
+          formSteps[formStepIndex].classList.add('active');
+      });
+  });
+
+  prevBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+          formSteps[formStepIndex].classList.remove('active');
+          formStepIndex--;
+          formSteps[formStepIndex].classList.add('active');
+      });
+  });
+
+  submitBtn.addEventListener('click', () => {
+      formSteps[formStepIndex].classList.remove('active');
+      loadingScreen.classList.add('active');
+  });
+});
 
 
 // live strteam
@@ -217,6 +245,30 @@ $(document).ready(function () {
   ],
 });
 
+$('.mobile_services').slick({
+  slidesToShow: 2,
+  slidesToScroll: 1,
+  pauseOnHover: true,
+  arrows:false,
+  dots:false,
+  responsive: [
+    {
+      breakpoint: 767,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+      },
+    },
+    {
+      breakpoint: 575,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+});
+
 });
 
 // change text animated
@@ -304,11 +356,11 @@ $(document).ready(function () {
     ]
   });
   $(".prev-btn").click(function () {
-		$(".model_slider").slick("slickPrev");
+		$(".slick-slider").slick("slickPrev");
 	});
 
 	$(".next-btn").click(function () {
-		$(".model_slider").slick("slickNext");
+		$(".slick-slider").slick("slickNext");
 	});
 	$(".prev-btn").addClass("slick-disabled");
 	$(".model_slider").on("afterChange", function () {
@@ -443,6 +495,9 @@ const beta1 = new Beta();
 document.querySelector(".betanext").onclick = beta1.next;
 document.querySelector(".betaback").onclick = beta1.prev;
 document.querySelector(".betas").onclick = beta1.next;
+
+
+
 
 
 

@@ -285,7 +285,7 @@ a {
 .scroll_dpwn_block .text_block {
     width: 100%;
     max-width: 442px;
-    margin-left: auto;
+    margin: auto;
 }
 .scroll_button_wrap {
     display: flex;
@@ -1043,7 +1043,7 @@ section.currently_sec {
     align-items: center;
     gap: 50px;
     justify-content: space-between;
-    margin-top: -100px;
+    margin-top: 40px;
 }
 
 .videos_compare_block .video_col {
@@ -1826,7 +1826,8 @@ button:focus {
     max-width: 1000px;
 
     margin: auto;
-    background: linear-gradient(180deg, #FFFFFF -561%, rgba(255, 255, 255, 0) 62%);
+    /* background: linear-gradient(180deg, #FFFFFF -561%, rgba(255, 255, 255, 0) 62%); */
+    background-color: #000000;
     opacity: 4;
     padding: 70px 100px;
     border-radius: 10px;
@@ -1872,9 +1873,9 @@ button:focus {
 }
 
 .table_head h2 {
-    line-height: 32px;
+    line-height: 1.2;
     font-weight: 600;
-    font-size: 32px;
+    font-size: 40px;
     color: #FF69B3;
 }
 
@@ -1887,22 +1888,23 @@ button:focus {
 }
 .table_content input {
     outline: 0;
-    color: white;
+    color: #afa4a4;
     border-radius: 24px;
     border: 1px solid #FFFFFF21;
     padding: 12px 16px;
     width: 100%;
     background-color: transparent;
+    font-size: 15px;
 }
 
 .table_content input::placeholder {
-    color: white;
+    color: afa4a4;
 
 }
 
 .table_content textarea {
     width: 100%;
-    color: white;
+    color: #afa4a4;
     padding: 17px 22px;
     border-radius: 24px;
     background-color: black;
@@ -1911,12 +1913,86 @@ button:focus {
 }
 
 .table_content textarea::placeholder {
-    color: white;
+    color: #afa4a4;
 }
 .applynow_section .bg_video video {
     object-position: center bottom;
 }
+
+/*----- step form-----*/
+.applynow_section .form-group {
+    margin-bottom: 25px;
+}
+.form-step .label {
+    text-align: left;
+    font-size: 18px;
+    margin: 0px 0px 15px;
+    display: block;
+}
+.form-step .table_head {
+    margin: 0px 0px 40px;
+}
+.applynow_section input[type="text"],
+.applynow_section input[type="email"],
+.applynow_section input[type="radio"] + label {
+    width: 100%;
+}
+
+.custom_radio input[type="radio"] {
+    display: none;
+}
+
+.custom_radio input[type="radio"] + label {
+    display: inline-block;
+    padding: 12px;
+    cursor: pointer;
+    background-color: #000000;
+    border: 1px solid #13080d;
+    border-radius: 24px;
+    font-size: 16px;
+}
+.form-group.custom_radio {
+    margin-bottom: 10px;
+}
+.custom_radio input[type="radio"]:checked + label {
+    background-color: #ff69b3;
+    color: white;
+}
+.step_button_wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+}
+.mobile_services {
+    margin-top: 20px;
+}
+.mobile_services .slick-track {
+    display: flex;
+}
+.mobile_services .slick-track .slick-slide {
+    height: auto;
+}
+.mobile_services .slick-track .slick-slide > div {
+    height: 100%;
+}
+
+.mobile_services .slick-track .slick-slide .horizontal_slide_col {
+    height: 100%;
+}
 /*------ responsive stare -------*/
+@media (min-width: 767px) {
+    .mobile_section {
+       display:none;
+    }
+}
 
 @media (min-width: 1600px) {
     .container {
@@ -1985,7 +2061,7 @@ ul.navbar-nav {
     font-size: 16px;
 }
 .applynow_section {
-    padding: 150px 0px 20px;
+    padding: 150px 0px 100px;
 }
 }
 
@@ -2364,9 +2440,7 @@ h2 {
     .p_100 {
         padding: 40px 0px;
     }
-    
-    .scroll_dpwn_block {}
-    
+  
     .scroll_dpwn_block .row {
         flex-wrap: nowrap;
     }
@@ -2384,13 +2458,14 @@ h2 {
     }
     
     .more_text_div .more_free_text {
-        text-align: left;
+        text-align: center;
         font-size: 32px;
         margin: 20px 0px;
     }
     
     .more_free_row {
         flex-direction: column-reverse;
+        text-align: center;
     }
     
     .size195 {
@@ -2537,6 +2612,21 @@ h2 {
     }
     .table_opacity {
         padding: 40px;
+    }
+    .join_logo {
+        margin-top: 30px;
+    }
+    .custom_radio input[type="radio"] + label{
+        border-radius: 12px;
+    }
+    .desktop_section{
+        display: none;
+    }
+    .services.mobile_section {
+        height: auto !important;
+    }
+    .services.mobile_section .service_card {
+        min-width: inherit;
     }
 }
 

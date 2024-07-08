@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Faq;
+use App\Models\HomePageContent;
 use App\Models\OurModels;
+use App\Models\OurResult;
 use App\Models\Services;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
@@ -17,7 +19,9 @@ class FrontController extends Controller
         $testimonials = Testimonial::where('status',1)->get();
         $services = Services::first();
         $allModels = OurModels::where('status',1)->get();
-        return view('front.dashboard.index',compact('faqs','testimonials','services','allModels'));
+        $results = OurResult::first();
+        $homecontent = HomePageContent::first();
+        return view('front.home.index',compact('faqs','testimonials','services','allModels','results','homecontent'));
     }
 
     public function applyNow()

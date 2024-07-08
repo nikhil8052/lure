@@ -3,13 +3,116 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\HomePageContent;
 use App\Models\OurModels;
+use App\Models\OurResult;
 use App\Models\Services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class SiteContentController extends Controller
 {
+
+    public function homePage()
+    {
+        $homeContent = HomePageContent::first();
+        return view('admin.site-content.home_page.home',compact('homeContent'));
+    }
+
+    public function homeContentUpdate(Request $request)
+    {
+        // echo "<pre>";
+        // print_r($request->all());
+        // die();
+        $homeContent = HomePageContent::first();
+        if(!$homeContent) {
+            $homeContent = new HomePageContent();
+        }
+
+        if($request->type == 'joinus') {
+
+            $homeContent->join_us_heading = $request->joinus_heading;
+            $homeContent->join_us_text = $request->joinus_text;
+            if($request->hasFile('joinus_image')) {
+                $file = $request->file('joinus_image');
+                $filename ='img_' . time() . '.' . $file->extension();
+                $file->move(public_path() . '/lure/images/', $filename);
+            } 
+            $homeContent->join_us_image = $filename ?? $homeContent->join_us_image;
+
+        } else if($request->type == 'expertpicks'){
+
+            $homeContent->expertpicks_heading = $request->expertPicks_heading;
+
+            $filenames=[];
+            $count = 1;
+            foreach($request->logos as $data) {
+                if($data->isValid()) {
+                    $file = $data;
+                    $filename ='img_' .$count. time() . '.' . $file->extension();
+                    $file->move(public_path() . '/lure/images/', $filename);
+                    $filenames [$filename]=$filename;
+                } 
+                $count++;
+            }
+            $previouslogo = json_decode($homeContent->expertpicks_logos,true);
+            if ($previouslogo === null) {
+                $previouslogo = [];
+            }
+            $mergedLogos = array_merge($previouslogo, $filenames);
+            $homeContent->expertpicks_logos = json_encode($mergedLogos);
+
+        } else if($request->type == 'banner'){
+
+            $homeContent->bannerSec_heading = $request->banner_title;
+            $homeContent->bannerSec_text = $request->banner_text;
+            if($request->hasFile('banner_logo')) {
+                $file = $request->file('banner_logo');
+                $filename_logo ='img_' . time() . '.' . $file->extension();
+                $file->move(public_path() . '/lure/images/', $filename_logo);
+            } 
+            $homeContent->bannerSec_logo = $filename_logo ?? $homeContent->bannerSec_logo;
+
+            if($request->hasFile('bg_image')) {
+                $bgfile = $request->file('bg_image');
+                $filename_bg ='imgbg_' . time() . '.' . $bgfile->extension();
+                $bgfile->move(public_path() . '/lure/images/', $filename_bg);
+            } 
+            $homeContent->bannerSec_bgimage = $filename_bg ?? $homeContent->bannerSec_bgimage;
+
+            if($request->hasFile('bg_video')) {
+                $videofile = $request->file('bg_video');
+                $filename_video = 'video_' . time() . '.' . $videofile->extension();
+                $videofile->move(public_path('lure/images'), $filename_video);
+            }
+            $homeContent->bannerSec_video = $filename_video ?? $homeContent->bannerSec_video;
+
+        }
+        $homeContent->save();
+        return redirect()->back()->with('success','Data Updated Successfully');
+    }
+
+    public function removelogo(Request $request) 
+    {
+        $homeContent = HomePageContent::first();
+        $imageIndex = $request->imageIndex;
+        if(!$imageIndex) {
+            return response()->json(false);
+        } else {
+            if(isset($homeContent->expertpicks_logos) && $homeContent->expertpicks_logos != null && !empty(json_decode($homeContent->expertpicks_logos))) {
+                $logos = json_decode($homeContent->expertpicks_logos, true);
+                if(isset($logos[$imageIndex])) {
+                    unset($logos[$imageIndex]);
+                }
+                $homeContent->expertpicks_logos = json_encode($logos);
+                $homeContent->save();
+    
+                return response()->json(true);
+            } else {
+                return response()->json(false);
+            }
+        }
+    }
     public function services()
     {
         $services = Services::first();
@@ -84,5 +187,53 @@ class SiteContentController extends Controller
         } else {
             return response()->json(['error']);
         }
+    }
+
+
+    public function results()
+    {
+        $results = OurResult::first();
+        return view('admin.our_results.index',compact('results'));
+    }
+
+    public function addresults(Request $request)
+    {
+
+        // echo "<pre>";
+        // print_r($request->all());
+        // die();
+
+        $results = OurResult::first();
+        if(!$results) {
+            $results = new OurResult();
+        }
+        $results->title = $request->title;
+        // $results->results = json_encode($request->result);
+
+        $result_array = [];
+        foreach($request->result as $data) {
+            if(isset($data['image']) && $data['image']->isValid()) {
+                $file = $data['image'];
+                $filename ='Model_' . time() . '.' . $file->extension();
+                $file->move(public_path() . '/Our_result/', $filename);
+
+            } else if(isset($data['imageVal']) && $data['imageVal'] != null) {
+                $filename = $data['imageVal'];
+            } else {
+                $filename = null;
+            }
+            if(isset($filename) && $filename !=  null) {
+                $result_array[] = [
+                    'heading' => $data['heading'],
+                    'image' => $filename,
+                    'description' => $data['description']
+                ];
+            }
+        }
+
+        $results->results = json_encode($result_array);
+        $results->save();
+
+        return redirect()->back()->with('success','Data Updated Successfully');
     }
 }
