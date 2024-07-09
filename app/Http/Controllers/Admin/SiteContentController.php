@@ -8,6 +8,7 @@ use App\Models\OurModels;
 use App\Models\OurResult;
 use App\Models\Services;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Validator;
 
 class SiteContentController extends Controller
@@ -29,64 +30,80 @@ class SiteContentController extends Controller
             $homeContent = new HomePageContent();
         }
 
-        if($request->type == 'joinus') {
 
-            $homeContent->join_us_heading = $request->joinus_heading;
-            $homeContent->join_us_text = $request->joinus_text;
-            if($request->hasFile('joinus_image')) {
-                $file = $request->file('joinus_image');
-                $filename ='img_' . time() . '.' . $file->extension();
-                $file->move(public_path() . '/lure/images/', $filename);
-            } 
-            $homeContent->join_us_image = $filename ?? $homeContent->join_us_image;
-
-        } else if($request->type == 'expertpicks'){
-
-            $homeContent->expertpicks_heading = $request->expertPicks_heading;
-
-            $filenames=[];
-            $count = 1;
-            foreach($request->logos as $data) {
-                if($data->isValid()) {
-                    $file = $data;
-                    $filename ='img_' .$count. time() . '.' . $file->extension();
+        switch ($request->type) {
+            case 'joinus':
+                $homeContent->join_us_heading = $request->joinus_heading;
+                $homeContent->join_us_text = $request->joinus_text;
+                
+                if ($request->hasFile('joinus_image')) {
+                    $file = $request->file('joinus_image');
+                    $filename = 'img_' . time() . '.' . $file->extension();
                     $file->move(public_path() . '/lure/images/', $filename);
-                    $filenames [$filename]=$filename;
-                } 
-                $count++;
-            }
-            $previouslogo = json_decode($homeContent->expertpicks_logos,true);
-            if ($previouslogo === null) {
-                $previouslogo = [];
-            }
-            $mergedLogos = array_merge($previouslogo, $filenames);
-            $homeContent->expertpicks_logos = json_encode($mergedLogos);
+                }
+                
+                $homeContent->join_us_image = $filename ?? $homeContent->join_us_image;
+                break;
+        
+            case 'expertpicks':
+                $homeContent->expertpicks_heading = $request->expertPicks_heading;
+                
+                $filenames = [];
+                $count = 1;
+                foreach ($request->logos as $data) {
+                    if ($data->isValid()) {
+                        $file = $data;
+                        $filename = 'img_' . $count . time() . '.' . $file->extension();
+                        $file->move(public_path() . '/lure/images/', $filename);
+                        $filenames[$filename] = $filename;
+                    }
+                    $count++;
+                }
+                
+                $previouslogo = json_decode($homeContent->expertpicks_logos, true) ?? [];
+                $mergedLogos = array_merge($previouslogo, $filenames);
+                $homeContent->expertpicks_logos = json_encode($mergedLogos);
+                break;
+        
+            case 'banner':
+                $homeContent->bannerSec_heading = $request->banner_title;
+                $homeContent->bannerSec_text = $request->banner_text;
+                
+                if ($request->hasFile('banner_logo')) {
+                    $file = $request->file('banner_logo');
+                    $filename_logo = 'img_' . time() . '.' . $file->extension();
+                    $file->move(public_path() . '/lure/images/', $filename_logo);
+                }
+                
+                $homeContent->bannerSec_logo = $filename_logo ?? $homeContent->bannerSec_logo;
+        
+                if ($request->hasFile('bg_image')) {
+                    $bgfile = $request->file('bg_image');
+                    $filename_bg = 'imgbg_' . time() . '.' . $bgfile->extension();
+                    $bgfile->move(public_path() . '/lure/images/', $filename_bg);
+                }
+                
+                $homeContent->bannerSec_bgimage = $filename_bg ?? $homeContent->bannerSec_bgimage;
+        
+                if ($request->hasFile('bg_video')) {
+                    $videofile = $request->file('bg_video');
+                    $filename_video = 'video_' . time() . '.' . $videofile->extension();
+                    $videofile->move(public_path('lure/images'), $filename_video);
+                }
+                
+                $homeContent->bannerSec_video = $filename_video ?? $homeContent->bannerSec_video;
+                break;
 
-        } else if($request->type == 'banner'){
-
-            $homeContent->bannerSec_heading = $request->banner_title;
-            $homeContent->bannerSec_text = $request->banner_text;
-            if($request->hasFile('banner_logo')) {
-                $file = $request->file('banner_logo');
-                $filename_logo ='img_' . time() . '.' . $file->extension();
-                $file->move(public_path() . '/lure/images/', $filename_logo);
-            } 
-            $homeContent->bannerSec_logo = $filename_logo ?? $homeContent->bannerSec_logo;
-
-            if($request->hasFile('bg_image')) {
-                $bgfile = $request->file('bg_image');
-                $filename_bg ='imgbg_' . time() . '.' . $bgfile->extension();
-                $bgfile->move(public_path() . '/lure/images/', $filename_bg);
-            } 
-            $homeContent->bannerSec_bgimage = $filename_bg ?? $homeContent->bannerSec_bgimage;
-
-            if($request->hasFile('bg_video')) {
-                $videofile = $request->file('bg_video');
-                $filename_video = 'video_' . time() . '.' . $videofile->extension();
-                $videofile->move(public_path('lure/images'), $filename_video);
-            }
-            $homeContent->bannerSec_video = $filename_video ?? $homeContent->bannerSec_video;
-
+            case 'aboutus':
+                $homeContent->aboutSec_activeheading = json_encode($request->active_heading);
+                $homeContent->aboutSec_subheading = $request->about_us_sub_heading;
+                $homeContent->aboutSec_text = $request->aboutus_text;
+                
+                break;
+        
+            default:
+                // Handle other types or provide a default behavior
+                break;
         }
         $homeContent->save();
         return redirect()->back()->with('success','Data Updated Successfully');

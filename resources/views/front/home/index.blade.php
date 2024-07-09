@@ -4,16 +4,30 @@
     <div class="banner">
         <div class="banner_bg_video">
             <video class="banner_bg" width="100%" autoplay loop  muted playsinline id="vid">
-              <source src="{{ asset('lure/images/Aura2.mp4') }}" type="video/mp4">
+                @if (isset($homecontent->bannerSec_video ) && $homecontent->bannerSec_video  != null) 
+                    <source src="{{ asset('lure/images') }}/{{ $homecontent->bannerSec_video ?? 'Aura2.mp4' }}" type="video/mp4">
+                @else
+                    <source src="{{ asset('lure/images/Aura2.mp4') }}" type="video/mp4">
+                @endif
+              
             </video>
         </div>
         <div class="banner_top text-center">
-            <h3 class="banner_sub_head">We LURE your dreams into reality.</h3>
-            <img src="{{ asset('lure/images/bannerlogo.png') }}" class="lure_text move_element_large">
+            <h3 class="banner_sub_head">{{ $homecontent->bannerSec_heading  ?? 'We LURE your dreams into reality.' }}</h3>
+            @if (isset($homecontent->bannerSec_logo ) && $homecontent->bannerSec_logo  != null) 
+                <img src="{{ asset('lure/images') }}/{{ $homecontent->bannerSec_logo ?? 'bannerlogo.png' }}" class="lure_text move_element_large">
+            @else
+                <img src="{{ asset('lure/images/bannerlogo.png') }}" class="lure_text move_element_large">
+            @endif
+            
         </div>
     </div>
     <div class="ripple_wrapper scroll_container" >
-        <div class="ripple_box" style="background-image: url({{ asset('lure/images/banner_water.png') }});">
+        @if (isset($homecontent->bannerSec_bgimage ) && $homecontent->bannerSec_bgimage  != null) 
+            <div class="ripple_box" style="background-image: url({{ asset('lure/images') }}/{{ $homecontent->bannerSec_bgimage ?? 'banner_water.png' }});">
+        @else
+            <div class="ripple_box" style="background-image: url({{ asset('lure/images/banner_water.png') }});">
+        @endif
             <div class="ripple" ></div>
                 <div class="scroll_dpwn_block">
                     <div class="container">
@@ -21,7 +35,7 @@
                             <div class="row text-center">
                                 <div class="col-md-12 text_col">
                                     <div class="text_block">
-                                        <p class="size26">We are a digital talent management company and digital marketing agency based in LA, California & LV, Nevada.</p>
+                                        <p class="size26">{{ $homecontent->bannerSec_text ?? 'We are a digital talent management company and digital marketing agency based in LA, California & LV, Nevada.' }}</p>
                                     </div>
                                 </div>
                             </div>

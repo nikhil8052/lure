@@ -61,7 +61,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- <div class="row g-3 ">
+                                        <div class="row g-3 ">
                                             <div class="col-lg-3">
                                                 <div class="form-group">
                                                     <label class="form-label">Background video</label>
@@ -82,7 +82,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div> --}}
+                                        </div>
                                         <div class="row g-3 ">
                                             <div class="col-lg-3">
                                                 <div class="form-group">
