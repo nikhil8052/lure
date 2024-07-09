@@ -45,6 +45,8 @@ Route::group(['middleware' => ['is_admin']], function () {
 
     Route::get('admin-dashboard/home-content',[SiteContentController::class,'homePage'])->name('web.home.page');
     Route::post('admin-dashboard/home-content/update',[SiteContentController::class,'homeContentUpdate'])->name('home.content.update');
+    Route::get('admin-dashboard/influence-content',[SiteContentController::class,'InfluenceContent'])->name('influence.content');
+    Route::post('admin-dashboard/influence-content/update',[SiteContentController::class,'InfluenceContentUpdate'])->name('influence.content.update');
     Route::post('admin-dashboard/remove-logo',[SiteContentController::class,'removelogo'])->name('remove.logo');
     Route::get('admin-dashboard/about-content',[SiteContentController::class,'aboutPage'])->name('web.about.page');
 

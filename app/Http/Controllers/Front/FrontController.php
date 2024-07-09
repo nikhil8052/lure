@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\ExpendInfluence;
 use App\Models\Faq;
 use App\Models\HomePageContent;
 use App\Models\OurModels;
@@ -21,7 +22,8 @@ class FrontController extends Controller
         $allModels = OurModels::where('status',1)->get();
         $results = OurResult::first();
         $homecontent = HomePageContent::first();
-        return view('front.home.index',compact('faqs','testimonials','services','allModels','results','homecontent'));
+        $influence_sec = ExpendInfluence::first();
+        return view('front.home.index',compact('faqs','testimonials','services','allModels','results','homecontent','influence_sec'));
     }
 
     public function applyNow()

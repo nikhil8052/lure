@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ExpendInfluence;
 use App\Models\HomePageContent;
 use App\Models\OurModels;
 use App\Models\OurResult;
@@ -106,6 +107,56 @@ class SiteContentController extends Controller
                 break;
         }
         $homeContent->save();
+        return redirect()->back()->with('success','Data Updated Successfully');
+    }
+
+    public function InfluenceContent()
+    {
+        $influence_sec = ExpendInfluence::first();
+        return view('admin.influence.expand_influence',compact('influence_sec'));
+    }
+    public function InfluenceContentUpdate(Request $request)
+    {
+        // echo "<pre>";
+        // print_r($request->all());
+        // die();
+        $influence_sec = ExpendInfluence::first();
+        if(!$influence_sec) {
+            $influence_sec = new ExpendInfluence();
+        }
+
+        $influence_sec->heading = $request->influence_title;
+        $influence_sec->text = $request->influence_text;
+
+        if ($request->hasFile('before_video')) {
+            $videobfile = $request->file('before_video');
+            $filename_bvideo = 'video_before' . time() . '.' . $videobfile->extension();
+            $videobfile->move(public_path('lure/images'), $filename_bvideo);
+        }
+        $influence_sec->video_before = $filename_bvideo ?? $influence_sec->video_before;
+
+        if ($request->hasFile('after_video')) {
+            $videoafile = $request->file('after_video');
+            $filename_avideo = 'video_after' . time() . '.' . $videoafile->extension();
+            $videoafile->move(public_path('lure/images'), $filename_avideo);
+        }
+        $influence_sec->video_after = $filename_avideo ?? $influence_sec->video_after;
+
+        if ($request->hasFile('before_image')) {
+            $beforefile = $request->file('before_image');
+            $filename_bimg = 'img_before' . time() . '.' . $beforefile->extension();
+            $beforefile->move(public_path('lure/images'), $filename_bimg);
+        }
+        $influence_sec->image_before = $filename_bimg ?? $influence_sec->image_before;
+
+        if ($request->hasFile('after_image')) {
+            $afterfile = $request->file('after_image');
+            $filename_aimg = 'img_after' . time() . '.' . $afterfile->extension();
+            $afterfile->move(public_path('lure/images'), $filename_aimg);
+        }
+        $influence_sec->image_after = $filename_aimg ?? $influence_sec->image_after;
+
+        $influence_sec->save();
         return redirect()->back()->with('success','Data Updated Successfully');
     }
 

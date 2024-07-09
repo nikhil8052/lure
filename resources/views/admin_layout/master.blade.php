@@ -93,6 +93,9 @@
                                         <li class="nk-menu-item">
                                             <a href="{{ route('web.results') }}" class="nk-menu-link"><span class="nk-menu-text">Our Results</span></a>
                                         </li>
+                                        <li class="nk-menu-item">
+                                            <a href="{{ route('influence.content') }}" class="nk-menu-link"><span class="nk-menu-text">Expand Influence</span></a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li class="nk-menu-item has-sub">

@@ -47,8 +47,12 @@
                         <div class="row more_free_row">
                             <div class="col-md-6 text_left size22">
                                 <div class="more_text_div_left">
-                                    <p>Welcome to LURE, where human experience and expertise meet cutting-edge AI technology. We're not just a social media management agency; we're revolutionizing the way OnlyFans creators scale their accounts Our Mission is to empower creators.</p>
-                                    <p>We understand the unique challenges and opportunities that OnlyFans presents. That's why we've harnessed the power of AI to tailor our strategies specifically for the adult content industry. Our AI-driven solutions analyze trends, optimize content, and engage with your audience like never before.</p>
+                                    @if(isset($homecontent->aboutSec_text ) && $homecontent->aboutSec_text != null)
+                                        <p>{!! $homecontent->aboutSec_text !!}</p>   
+                                    @else
+                                        <p>Welcome to LURE, where human experience and expertise meet cutting-edge AI technology. We're not just a social media management agency; we're revolutionizing the way OnlyFans creators scale their accounts Our Mission is to empower creators.</p>
+                                        <p>We understand the unique challenges and opportunities that OnlyFans presents. That's why we've harnessed the power of AI to tailor our strategies specifically for the adult content industry. Our AI-driven solutions analyze trends, optimize content, and engage with your audience like never before.</p>
+                                    @endif
                                     <div class="button_wrap">
                                         <a href="#" class="cta_btn">Connect With Us</a>
                                     </div>
@@ -57,13 +61,26 @@
                             <div class="col-md-6 more_text_col">
                                 <div class="more_text_div">
                                     <div class="more_free_text">
-                                        <div class="changebox">
-                                            <span class="pink">More Fans </span>
-                                            <span class="pink">More views </span>
-                                            <span class="pink">More money </span>
-                                            <span class="pink">More reach </span>
-                                        </div>
-                                        With The Best <br> OnlyFans Agency
+                                        @if (isset($homecontent->aboutSec_activeheading ) && $homecontent->aboutSec_activeheading != null && !empty(json_decode($homecontent->aboutSec_activeheading)))
+                                            <div class="changebox">
+                                                @foreach (json_decode($homecontent->aboutSec_activeheading) as $key => $value )
+                                                    @if($key == 0)
+                                                        <span class="pink active">{{ $value }}</span>
+                                                    @else
+                                                        <span class="pink">{{ $value }}</span>
+                                                    @endif
+                                                @endforeach
+                                            </div>
+                                        @else
+                                            <div class="changebox">
+                                                <span class="pink">More Fans </span>
+                                                <span class="pink">More views </span>
+                                                <span class="pink">More money </span>
+                                                <span class="pink">More reach </span>
+                                            </div>
+                                        @endif
+                                        
+                                        {{ $homecontent->aboutSec_subheading ?? "With The Best OnlyFans Agency" }}
                                     </div>
                                 </div>
                             </div>
@@ -339,9 +356,9 @@
 <section class="influence_section p100">
     <div class="container">
         <div class="section_head text-center">
-            <h2>Expand Your Influence</h2>
+            <h2>{{ $influence_sec->heading ?? 'Expand Your Influence' }}</h2>
             <div class="header_div">
-                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                <p>{{ $influence_sec->text ??  "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged." }}</p>
             </div>
         </div>
         <div class="videos_compare_block">
@@ -353,7 +370,11 @@
                     <div class="video-placeholder">
                         <div class="video_wrapper">
                             <video class="reel" width="100%" autoplay loop  muted playsinline>
-                              <source src="{{ asset('lure/images/SaveInsta.App - 2815084280449866245.mp4')}}" type="video/mp4">
+                                @if(isset($influence_sec->video_before) && $influence_sec->video_before != null)
+                                    <source src="{{ asset('lure/images')}}/{{ $influence_sec->video_before ?? 'SaveInsta.App - 2815084280449866245.mp4'}}" type="video/mp4">
+                                @else
+                                    <source src="{{ asset('lure/images/SaveInsta.App - 2815084280449866245.mp4')}}" type="video/mp4">
+                                @endif
                             </video>
                         </div>
                     </div>
@@ -393,7 +414,11 @@
                     <div class="video-placeholder">
                         <div class="video_wrapper video_new ">
                             <video class="reel" width="100%" autoplay loop  muted playsinline>
-                            <source src="{{ asset('lure/images/SaveInsta.App - 3399851741141652982.mp4') }}" type="video/mp4">
+                                @if(isset($influence_sec->video_after) && $influence_sec->video_after != null)
+                                    <source src="{{ asset('lure/images')}}/{{ $influence_sec->video_after ?? 'SaveInsta.App - 3399851741141652982.mp4'}}" type="video/mp4">
+                                @else
+                                    <source src="{{ asset('lure/images/SaveInsta.App - 3399851741141652982.mp4') }}" type="video/mp4">
+                                @endif
                             </video>
                         </div>
                     </div>

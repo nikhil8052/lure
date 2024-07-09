@@ -35,7 +35,7 @@
                                             <div class="col-lg-9">
                                                 <div class="form-group">
                                                     <div class="form-control-wrap">
-                                                        <input type="text" class="form-control" name="banner_title" id="banner_title" placeholder="BREAKING THE NORMAL." value="{{ $homeContent->bannerSec_heading ?? '' }}">
+                                                        <input type="text" class="form-control serviceinput" name="banner_title" id="banner_title" placeholder="BREAKING THE NORMAL." value="{{ $homeContent->bannerSec_heading ?? '' }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -51,7 +51,7 @@
                                                 <div class="form-group">
                                                     <div class="form-control-wrap">
                                                         <div class="form-file">
-                                                            <input type="file"  class="form-file-input" id="banner_logo" name="banner_logo">
+                                                            <input type="file"  class="form-file-input @if ($homeContent->bannerSec_logo == null ) serviceinput @endif" id="banner_logo" name="banner_logo">
                                                             <label class="form-file-label" for="banner_logo">Choose file</label>
                                                         </div>
                                                     </div>
@@ -71,7 +71,7 @@
                                                 <div class="form-group">
                                                     <div class="form-control-wrap">
                                                         <div class="form-file">
-                                                            <input type="file"  class="form-file-input" id="bg_video" name="bg_video">
+                                                            <input type="file"  class="form-file-input @if ($homeContent->bannerSec_video == null ) serviceinput @endif" id="bg_video" name="bg_video">
                                                             <label class="form-file-label" for="bg_video">Choose file</label>
                                                         </div>
                                                     </div>
@@ -94,7 +94,7 @@
                                                 <div class="form-group">
                                                     <div class="form-control-wrap">
                                                         <div class="form-file">
-                                                            <input type="file"  class="form-file-input" id="bg_image" name="bg_image">
+                                                            <input type="file"  class="form-file-input @if ($homeContent->bannerSec_bgimage == null ) serviceinput @endif" id="bg_image" name="bg_image">
                                                             <label class="form-file-label" for="bg_image">Choose file</label>
                                                         </div>
                                                     </div>
@@ -114,7 +114,7 @@
                                             <div class="col-lg-9">
                                                 <div class="form-group">
                                                     <div class="form-control-wrap">
-                                                        <textarea class="form-control form-control" id="banner_text" placeholder="Lorem ipsum...." name="banner_text">{{ $homeContent->bannerSec_text ?? '' }}</textarea>
+                                                        <textarea class="form-control form-control" id="banner_text serviceinput" placeholder="Lorem ipsum...." name="banner_text">{{ $homeContent->bannerSec_text ?? '' }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -155,12 +155,32 @@
                                                 </div>
                                             </div>
                                             <div id="active_heading_container" class="col-lg-9">
-                                                <div class="form-group">
-                                                    <div class="form-control-wrap col-lg-12 d-flex">
-                                                        <input  type="text" class="form-control inputField col-lg-9" name="active_heading[]"  placeholder="Make More Money" >
-                                                        <span style="font-size: 25px" id="AddMore"><em class="icon ni ni-plus-round-fill"></em></span>
+                                                @if(isset($homeContent->aboutSec_activeheading) && $homeContent->aboutSec_activeheading != null && !empty(json_decode($homeContent->aboutSec_activeheading)))
+                                                    @foreach (json_decode($homeContent->aboutSec_activeheading) as $key =>  $value)
+                                                        @if($key == 0)
+                                                            <div class="form-group">
+                                                                <div class="form-control-wrap col-lg-12 d-flex">
+                                                                    <input  type="text" class="form-control inputField col-lg-9 serviceinput" name="active_heading[]"  placeholder="Make More Money" value="{{ $value ?? '' }}">
+                                                                    <span style="font-size: 25px" id="AddMore"><em class="icon ni ni-plus-round-fill"></em></span>
+                                                                </div>
+                                                            </div>
+                                                        @else
+                                                            <div class="form-group removeable_input">
+                                                                <div class="form-control-wrap col-lg-12 d-flex">
+                                                                    <input  type="text" class="form-control inputField col-lg-9 serviceinput" name="active_heading[]"  placeholder="Make More Money" value="{{ $value ?? '' }}" >
+                                                                    <span style="font-size: 25px" class="removeInput"><em class="icon ni ni-trash-fill"></em></span>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                @else
+                                                    <div class="form-group">
+                                                        <div class="form-control-wrap col-lg-12 d-flex">
+                                                            <input  type="text" class="form-control inputField col-lg-9 serviceinput" name="active_heading[]"  placeholder="Make More Money" >
+                                                            <span style="font-size: 25px" id="AddMore"><em class="icon ni ni-plus-round-fill"></em></span>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="row g-3 align-center">
@@ -173,7 +193,7 @@
                                             <div class="col-lg-9">
                                                 <div class="form-group">
                                                     <div class="form-control-wrap">
-                                                        <input type="text" class="form-control" name="about_us_sub_heading" id="about_us_sub_heading" placeholder="BREAKING THE NORMAL." value="">
+                                                        <input type="text" class="form-control serviceinput" name="about_us_sub_heading" id="about_us_sub_heading" placeholder="BREAKING THE NORMAL." value="{{ $homeContent->aboutSec_subheading ?? '' }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -188,7 +208,7 @@
                                             <div class="col-lg-9">
                                                 <div class="form-group">
                                                     <div class="form-control-wrap">
-                                                        <textarea class="form-control form-control" id="aboutus_text" placeholder="Lorem ipsum...." name="aboutus_text"></textarea>
+                                                        <textarea class="form-control form-control serviceinput" id="aboutus_text" placeholder="Lorem ipsum...." name="aboutus_text">{{ $homeContent->aboutSec_text ?? '' }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -231,7 +251,7 @@
                                             <div  class="col-lg-9">
                                                 <div class="form-group">
                                                     <div class="form-control-wrap ">
-                                                        <input  type="text" class="form-control inputField col-lg-9" name="expertPicks_heading" id="expertPicks_heading" value="{{ $homeContent->expertpicks_heading ?? '' }}">
+                                                        <input  type="text" class="form-control inputField col-lg-9 serviceinput" name="expertPicks_heading" id="expertPicks_heading" value="{{ $homeContent->expertpicks_heading ?? '' }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -247,7 +267,11 @@
                                                 <div class="form-group">
                                                     <div class="form-control-wrap d-flex">
                                                         <div class="form-file">
-                                                            <input type="file"  class="form-file-input"  name="logos[]">
+                                                            @if(isset($homeContent->expertpicks_logos) && $homeContent->expertpicks_logos != null && !empty(json_decode($homeContent->expertpicks_logos)))
+                                                                <input type="file"  class="form-file-input"  name="logos[]">
+                                                            @else
+                                                                <input type="file"  class="form-file-input serviceinput"  name="logos[]">
+                                                            @endif
                                                             <label class="form-file-label" >Choose file</label>
                                                         </div>
                                                         <span style="font-size: 25px" id="AddMorelogo"><em class="icon ni ni-plus-round-fill"></em></span>
@@ -307,7 +331,7 @@
                                             <div  class="col-lg-9">
                                                 <div class="form-group">
                                                     <div class="form-control-wrap ">
-                                                        <input  type="text" class="form-control inputField col-lg-9" name="joinus_heading" id="joinus_heading" placeholder="Join Us" value="{{ $homeContent->join_us_heading ?? '' }}">
+                                                        <input  type="text" class="form-control inputField col-lg-9 serviceinput" name="joinus_heading" id="joinus_heading" placeholder="Join Us" value="{{ $homeContent->join_us_heading ?? '' }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -322,7 +346,7 @@
                                             <div class="col-lg-9">
                                                 <div class="form-group">
                                                     <div class="form-control-wrap">
-                                                        <textarea class="form-control form-control" id="joinus_text" placeholder="Lorem ipsum...." name="joinus_text">{{ $homeContent->join_us_text ?? '' }}</textarea>
+                                                        <textarea class="form-control form-control serviceinput" id="joinus_text" placeholder="Lorem ipsum...." name="joinus_text">{{ $homeContent->join_us_text ?? '' }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -357,6 +381,7 @@
                                     </form>
                                 </div>
                             </div>
+                            
                             <div class="card-aside card-aside-left user-aside toggle-slide toggle-slide-left toggle-break-lg toggle-screen-lg" data-toggle-body="true" data-content="userAside" data-toggle-screen="lg" data-toggle-overlay="true">
                                 <div class="card-inner-group" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: auto; overflow: hidden;"><div class="simplebar-content" style="padding: 0px;">
                                     <div class="card-inner">
@@ -384,6 +409,7 @@
 </div>
 <script>
     $(document).ready(function(){
+        ClassicEditor.create(document.querySelector('#aboutus_text'));
         $('.sideLink').on('click',function(){
             var target_div = $(this).data('div');
             $('.homecontent').hide();
@@ -395,7 +421,7 @@
         $('#AddMore').on('click',function(){
             $html_ = `<div class="form-group removeable_input">
                         <div class="form-control-wrap col-lg-12 d-flex">
-                            <input  type="text" class="form-control inputField col-lg-9" name="active_heading[]"  placeholder="Make More Money" >
+                            <input  type="text" class="form-control inputField col-lg-9 serviceinput" name="active_heading[]"  placeholder="Make More Money" >
                             <span style="font-size: 25px" class="removeInput"><em class="icon ni ni-trash-fill"></em></span>
                         </div>
                     </div>`;
@@ -410,7 +436,7 @@
             $html_ = `<div class="form-group removeable_logoinput">
                         <div class="form-control-wrap d-flex">
                             <div class="form-file">
-                                <input type="file"  class="form-file-input"  name="logos[]">
+                                <input type="file"  class="form-file-input serviceinput"  name="logos[]">
                                 <label class="form-file-label" >Choose file</label>
                             </div>
                             <span style="font-size: 25px" class="removelogoInput"><em class="icon ni ni-trash-fill"></em></span>
@@ -443,6 +469,35 @@
                    
                 }
             });
+        });
+
+        $('.form-settings').submit(function(event) {
+            event.preventDefault(); 
+            
+            let valid = true;
+            
+            $(this).find('.serviceinput').each(function() {
+                if ($(this).val().trim() === '') {
+                    valid = false;
+                    $(this).addClass('is-invalid');
+                } else {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+            
+            // If all fields are valid, submit the form
+            if (valid) {
+                toastr.clear();
+                $(this).off('submit').submit(); // Submit the form
+            } else {
+                toastr.clear();
+                NioApp.Toast('All fields are required', 'error', {
+                    position: 'top-right'
+                });
+            }
+        });
+        $(document).on('input', '.serviceinput', function() {
+            $(this).removeClass('is-invalid'); 
         });
     });
 </script>
