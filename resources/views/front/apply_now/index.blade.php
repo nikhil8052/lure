@@ -3,20 +3,23 @@
 <section class="applynow_section">
     <div class="bg_video">
         <video class="bg_accordion" width="100%" autoplay loop muted playsinline id="bg-vid">
-            <source src="{{ asset('lure/images/Aura2.mp4') }}" type="video/mp4">
+            @if(isset($applyNow->bg_video) && $applyNow->bg_video !=  null)
+                <source src="{{ asset('lure/images') }}/{{ $applyNow->bg_video ?? 'Aura2.mp4' }}" type="video/mp4">
+            @else
+                <source src="{{ asset('lure/images/Aura2.mp4') }}" type="video/mp4">
+            @endif
         </video>
     </div>
     <div class="container">
         <div class="container outer_zindex">
             <div class="table_container">
                 <div class="table_opacity">
-                  
                     <div class="table_content apply_form" id="form-container">
                         <!-- Step 1 -->
                         <div class="form-step active">
                             <div class="table_head">
-                                <h2>Hey there!</h2>
-                                <p>Here is the queen</p>
+                                <h2>{{ $applyNow->heading ??  'Hey there!' }}</h2>
+                                <p>{{ $applyNow->sub_heading ?? 'Here is the queen' }}</p>
                             </div>
                             <p class="label">Are you Applying for:</p>
                             <div class="form-group custom_radio">
@@ -81,9 +84,13 @@
                         <div class="form-step">
                             <div class="complete_form_notification">
                                 <div class="loading-animation">
-                                    <img src="{{ asset('lure/images/gif_logo.gif') }}" alt="Lure">
+                                    @if(isset($applyNow->submit_gif) && $applyNow->submit_gif != null)
+                                        <img src="{{ asset('lure/images') }}/{{ $applyNow->submit_gif ?? 'gif_logo.gif' }}" alt="Lure">
+                                    @else
+                                        <img src="{{ asset('lure/images/gif_logo.gif') }}" alt="Lure">
+                                    @endif
                                 </div>
-                                <p>Thank you for applying.<br>We will reach out to you as soon as we can.</p>
+                                <p>{{ $applyNow->submit_heading ?? 'Thank you for applying.' }}<br>{{ $applyNow->submit_text ?? 'We will reach out to you as soon as we can.' }}</p>
                             </div>
                         </div>
                     </div>

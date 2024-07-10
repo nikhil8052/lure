@@ -55,10 +55,12 @@
                                                             <label class="form-file-label" for="banner_logo">Choose file</label>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                @if (isset($homeContent->bannerSec_logo) &&$homeContent->bannerSec_logo != null )
                                                     <div class="image-container" >
                                                         <img style="background-color: black" height="150px" width="350px" src="{{ asset('/lure/images') }}/{{ $homeContent->bannerSec_logo ?? '' }}" alt="">
                                                     </div>
-                                                </div>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="row g-3 ">
@@ -75,12 +77,14 @@
                                                             <label class="form-file-label" for="bg_video">Choose file</label>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                @if(isset($homeContent->bannerSec_video) && $homeContent->bannerSec_video != null)
                                                     <div class="video-container">
                                                         <video class="banner_bg" height="150px" width="200px" autoplay loop  muted playsinline id="vid">
                                                             <source src="{{ asset('/lure/images') }}/{{ $homeContent->bannerSec_video ?? '' }}" type="video/mp4">
                                                         </video>
                                                     </div>
-                                                </div>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="row g-3 ">
@@ -98,10 +102,12 @@
                                                             <label class="form-file-label" for="bg_image">Choose file</label>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                @if(isset($homeContent->bannerSec_bgimage) && $homeContent->bannerSec_bgimage != null)
                                                     <div class="image-container">
                                                         <img height="200px" width="300px" src="{{ asset('/lure/images') }}/{{ $homeContent->bannerSec_bgimage ?? '' }}" alt="">
                                                     </div>
-                                                </div>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="row g-3 ">
@@ -283,11 +289,19 @@
                                             <div class="row g-3">
                                                 <div id="logoContainer" class="col-lg-12">
                                                     <div class="form-group d-flex flex-wrap">
+                                                        <?php $i = 1; ?>
                                                         @foreach (json_decode($homeContent->expertpicks_logos,true) as $key => $logo)
-                                                            <div class="p-2 m-2 d-flex" style="min-height: 30px;min-width: 50px;">
-                                                                <img src="{{ asset('/lure/images') }}/{{ $logo }}" alt="">
-                                                                <span style="font-size: 25px" data-index="{{ $key }}" class="remove_image"><em class="icon ni ni-trash-fill"></em></span>
-                                                            </div>
+                                                            @if( $i == 1)
+                                                                <div class="p-2 m-2 d-flex" style="min-height: 30px;min-width: 50px;">
+                                                                    <img src="{{ asset('/lure/images') }}/{{ $logo }}" alt="">
+                                                                </div>
+                                                            @else
+                                                                <div class="p-2 m-2 d-flex" style="min-height: 30px;min-width: 50px;">
+                                                                    <img src="{{ asset('/lure/images') }}/{{ $logo }}" alt="">
+                                                                    <span style="font-size: 25px" data-index="{{ $key }}" class="remove_image"><em class="icon ni ni-trash-fill"></em></span>
+                                                                </div>
+                                                            @endif
+                                                            <?php $i++ ?>
                                                         @endforeach
                                                     </div>
                                                 </div>
@@ -351,7 +365,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- <div class="row g-3 ">
+                                        <div class="row g-3 ">
                                             <div class="col-lg-3">
                                                 <div class="form-group">
                                                     <label class="form-label">Image</label>
@@ -361,16 +375,18 @@
                                                 <div class="form-group">
                                                     <div class="form-control-wrap">
                                                         <div class="form-file">
-                                                            <input type="file"  class="form-file-input" id="joinus_image" name="joinus_image">
+                                                            <input type="file"  class="form-file-input  @if(!isset($homeContent->join_us_image) || $homeContent->join_us_image == null ) serviceinput @endif" id="joinus_image" name="joinus_image">
                                                             <label class="form-file-label" for="joinus_image">Choose file</label>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="image-container">
-                                                    <img height="200px" width="300px" src="{{ asset('/lure/images') }}/{{ $homeContent->join_us_image ?? '' }}" alt="">
-                                                </div>
+                                                @if(isset($homeContent->join_us_image) && $homeContent->join_us_image != null )
+                                                    <div class="image-container">
+                                                        <img style="background-color: black" height="200px" width="300px" src="{{ asset('/lure/images') }}/{{ $homeContent->join_us_image ?? '' }}" alt="">
+                                                    </div>
+                                                @endif
                                             </div>
-                                        </div> --}}
+                                        </div>
                                         <div class="row g-3">
                                             <div class="col-lg-7">
                                                 <div class="form-group mt-2">
@@ -381,7 +397,108 @@
                                     </form>
                                 </div>
                             </div>
-                            
+                            <div id="content-creation" style="display:none;" class="homecontent card-inner card-inner-lg">
+                                <div class="nk-block-head nk-block-head-lg">
+                                    <div class="nk-block-between">
+                                        <div class="nk-block-head-content">
+                                            <h4 class="nk-block-title">Content Creation Section</h4>
+                                            <div class="nk-block-des">
+                                                {{-- <p>Change your banner content.</p> --}}
+                                            </div>
+                                        </div>
+                                        <div class="nk-block-head-content align-self-start d-lg-none">
+                                            <a href="#" class="toggle btn btn-icon btn-trigger mt-n1" data-target="userAside"><em class="icon ni ni-menu-alt-r"></em></a>
+                                        </div>
+                                    </div>
+                                </div><!-- .nk-block-head -->
+                                <div class="nk-block">
+                                    <form action="{{ route('home.content.update') }}" method="POST" enctype="multipart/form-data" class="gy-3 form-settings">
+                                        @csrf
+                                        <input type="hidden" name="type" value="contentsec">
+                                        <div class="row g-3 align-center">
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="contentsec-heading">Heading</label>
+                                                    {{-- <span class="form-note">Specify the name of your hotel.</span> --}}
+                                                </div>
+                                            </div>
+                                            <div  class="col-lg-9">
+                                                <div class="form-group">
+                                                    <div class="form-control-wrap ">
+                                                        <input  type="text" class="form-control inputField col-lg-9 serviceinput" name="contentsec_heading" id="contentsec-heading" placeholder="Join Us" value="{{ $homeContent->contentSec_heading ?? '' }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 align-center">
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="form-label">Text</label>
+                                                    {{-- <span class="form-note">The logo of your hotel</span> --}}
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <div class="form-group">
+                                                    <div class="form-control-wrap">
+                                                        <textarea class="form-control form-control serviceinput" id="contentsec_text" placeholder="Lorem ipsum...." name="contentsec_text">{{ $homeContent->contentSec_text ?? '' }}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 ">
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="form-label">Image</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <div class="form-group">
+                                                    <div class="form-control-wrap">
+                                                        <div class="form-file">
+                                                            <input type="file"  class="form-file-input @if(!isset($homeContent->contentSec_image) || $homeContent->contentSec_image == null ) serviceinput @endif" id="contentsec_image" name="contentsec_image">
+                                                            <label class="form-file-label" for="contentsec_image">Choose file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @if(isset($homeContent->contentSec_image) && $homeContent->contentSec_image != null )
+                                                    <div class="image-container">
+                                                        <img style="background-color: black" height="200px" width="300px" src="{{ asset('/lure/images') }}/{{ $homeContent->contentSec_image ?? '' }}" alt="">
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 ">
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="form-label">Side Image</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <div class="form-group">
+                                                    <div class="form-control-wrap">
+                                                        <div class="form-file">
+                                                            <input type="file"  class="form-file-input @if(!isset($homeContent->contentSec_simage) || $homeContent->contentSec_simage == null ) serviceinput @endif" id="contentsec_simage" name="contentsec_simage">
+                                                            <label class="form-file-label" for="contentsec_simage">Choose file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @if(isset($homeContent->contentSec_simage) && $homeContent->contentSec_simage != null )
+                                                    <div class="image-container">
+                                                        <img style="background-color: black" height="200px" width="300px" src="{{ asset('/lure/images') }}/{{ $homeContent->contentSec_simage ?? '' }}" alt="">
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="row g-3">
+                                            <div class="col-lg-7">
+                                                <div class="form-group mt-2">
+                                                    <button type="submit" class="btn btn-lg btn-primary">Update</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                             <div class="card-aside card-aside-left user-aside toggle-slide toggle-slide-left toggle-break-lg toggle-screen-lg" data-toggle-body="true" data-content="userAside" data-toggle-screen="lg" data-toggle-overlay="true">
                                 <div class="card-inner-group" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: auto; overflow: hidden;"><div class="simplebar-content" style="padding: 0px;">
                                     <div class="card-inner">
@@ -394,8 +511,9 @@
                                         <ul class="link-list-menu">
                                             <li><a class="sideLink active"  data-div="banner-sec" ><em class="icon ni ni-laptop"></em><span>Banner Section</span></a></li>
                                             <li><a class="sideLink" data-div="about-us" ><em class="icon ni ni-user-fill"></em><span>About us</span></a></li>
-                                            <li><a class="sideLink" data-div="expert-picks" ><em class="icon ni ni-lock-alt-fill"></em><span>Expert Picks</span></a></li>
-                                            <li><a class="sideLink" data-div="join-us" ><em class="icon ni ni-lock-alt-fill"></em><span>Join Us</span></a></li>
+                                            <li><a class="sideLink" data-div="expert-picks" ><em class="icon ni ni-shield-check-fill"></em><span>Expert Picks</span></a></li>
+                                            <li><a class="sideLink" data-div="join-us" ><em class="icon ni ni-network"></em><span>Join Us</span></a></li>
+                                            <li><a class="sideLink" data-div="content-creation" ><em class="icon ni ni-mobile"></em><span>Content Creation Section</span></a></li>
                                         </ul>
                                     </div>
                                 </div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 369px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: hidden;"><div class="simplebar-scrollbar" style="height: 0px; display: none;"></div></div></div><!-- .card-inner-group -->
@@ -410,6 +528,7 @@
 <script>
     $(document).ready(function(){
         ClassicEditor.create(document.querySelector('#aboutus_text'));
+        ClassicEditor.create(document.querySelector('#contentsec_text'));
         $('.sideLink').on('click',function(){
             var target_div = $(this).data('div');
             $('.homecontent').hide();

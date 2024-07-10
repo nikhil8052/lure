@@ -104,9 +104,11 @@
                                         <span class="nk-menu-text">Web Pages</span>
                                     </a>
                                     <ul class="nk-menu-sub" >
-                                      
                                         <li class="nk-menu-item">
                                             <a href="{{ route('web.home.page') }}" class="nk-menu-link"><span class="nk-menu-text">Home Page</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="{{ route('web.applyNow.page') }}" class="nk-menu-link"><span class="nk-menu-text">Apply Now Page</span></a>
                                         </li>
                                     </ul>
                                 </li>

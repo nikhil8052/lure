@@ -29,21 +29,29 @@
                                         <form action="{{ route('update.setting') }}" method="POST" enctype="multipart/form-data" class="gy-3 form-settings">
                                             @csrf
                                             <input type="hidden" name="type" value="general">
-                                            {{-- <div class="row g-3 align-center">
+                                            <div class="row g-3 align-center">
                                                 <div class="col-lg-5">
                                                     <div class="form-group">
-                                                        <label class="form-label" for="comp-name">Company Name</label>
-                                                        <span class="form-note">Specify the name of your Company.</span>
+                                                        <label class="form-label" for="comp-name">Site Logo</label>
+                                                        <span class="form-note">Specify the Logo of your Company.</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-7">
                                                     <div class="form-group">
                                                         <div class="form-control-wrap">
-                                                            <input type="text" class="form-control"  id="comp-name" value="Company Name">
+                                                            <div class="form-file">
+                                                                <input type="file"  class="form-file-input" id="site-logo" name="site_logo">
+                                                                <label class="form-file-label" for="site-logo">Choose file</label>
+                                                            </div>
                                                         </div>
                                                     </div>
+                                                    @if($siteContent->site_logo != null )
+                                                        <div class="image-container">
+                                                            <img style="background-color: black" height="200px" width="300px" src="{{ asset('/lure/images') }}/{{ $siteContent->site_logo ?? '' }}" alt="">
+                                                        </div>
+                                                    @endif
                                                 </div>
-                                            </div> --}}
+                                            </div>
                                             <div class="row g-3 align-center">
                                                 <div class="col-lg-5">
                                                     <div class="form-group">
@@ -74,7 +82,57 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                           
+                                            <div class="row g-3 align-center">
+                                                <div class="col-lg-5">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="sub_sec_heading">Subscribe Section Heading</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-7">
+                                                    <div class="form-group">
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" class="form-control" name="sub_sec_heading" id="sub_sec_heading" placeholder="Email Updates" value="{{ $siteContent->subscribe_sec_heading ?? '' }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 align-center">
+                                                <div class="col-lg-5">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="sub_sec_text">Subscribe Section Text</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-7">
+                                                    <div class="form-group">
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" class="form-control" name="sub_sec_text" id="sub_sec_text" placeholder="Get Email Updates" value="{{ $siteContent->subscribe_sec_text ?? '' }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 align-center">
+                                                <div class="col-lg-5">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="footer-logo">Footer Logo</label>
+                                                        <span class="form-note">Specify the Footer Logo.</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-7">
+                                                    <div class="form-group">
+                                                        <div class="form-control-wrap">
+                                                            <div class="form-file">
+                                                                <input type="file"  class="form-file-input" id="footer-logo" name="footer_logo">
+                                                                <label class="form-file-label" for="footer-logo">Choose file</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @if($siteContent->footer_logo != null )
+                                                        <div class="image-container">
+                                                            <img style="background-color: black" height="200px" width="300px" src="{{ asset('/lure/images') }}/{{ $siteContent->footer_logo ?? '' }}" alt="">
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            </div>
                                             <div class="row g-3 align-center">
                                                 <div class="col-lg-5">
                                                     <div class="form-group">

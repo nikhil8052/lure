@@ -39,6 +39,23 @@ class SettingsController extends Controller
             $siteContent->site_copyrights = $request->comp_copyright;
             $siteContent->site_message = $request->comp_message;
             $siteContent->company_address = $request->company_address;
+            $siteContent->subscribe_sec_heading = $request->sub_sec_heading;
+            $siteContent->subscribe_sec_text = $request->sub_sec_text;
+
+            if ($request->hasFile('site_logo')) {
+                $sfile = $request->file('site_logo');
+                $site_logo = 'logo_' . time() . '.' . $sfile->extension();
+                $sfile->move(public_path('lure/images'), $site_logo);
+                $siteContent->site_logo = $site_logo;
+            }
+
+            if ($request->hasFile('footer_logo')) {
+                $ffile = $request->file('footer_logo');
+                $footer_logo = 'logoFooter_' . time() . '.' . $ffile->extension();
+                $ffile->move(public_path('lure/images'), $footer_logo);
+                $siteContent->footer_logo = $footer_logo;
+            }
+            
         } else {
 
             $siteContent->site_email = $request->comp_email ?? $siteContent->site_email;
@@ -50,6 +67,22 @@ class SettingsController extends Controller
             $siteContent->facebook_link = $request->facebook ?? $siteContent->facebook_link;
             $siteContent->linkedin_link = $request->linkedin ?? $siteContent->linkedin_link;
             $siteContent->about_team = $request->about_team ?? $siteContent->about_team;
+            $siteContent->subscribe_sec_heading = $request->sub_sec_heading ?? $siteContent->subscribe_sec_heading;
+            $siteContent->subscribe_sec_text = $request->sub_sec_text ?? $siteContent->subscribe_sec_text;
+
+            if ($request->hasFile('footer_logo')) {
+                $ffile = $request->file('footer_logo');
+                $footer_logo = 'logoFooter_' . time() . '.' . $ffile->extension();
+                $ffile->move(public_path('lure/images'), $footer_logo);
+                $siteContent->footer_logo = $footer_logo;
+            }
+
+            if ($request->hasFile('site_logo')) {
+                $sfile = $request->file('site_logo');
+                $site_logo = 'logo_' . time() . '.' . $sfile->extension();
+                $sfile->move(public_path('lure/images'), $site_logo);
+                $siteContent->site_logo = $site_logo;
+            }
         }
 
         $siteContent->save();

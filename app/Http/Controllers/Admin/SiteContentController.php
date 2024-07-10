@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ApplyNowContent;
 use App\Models\ExpendInfluence;
 use App\Models\HomePageContent;
 use App\Models\OurModels;
@@ -41,9 +42,10 @@ class SiteContentController extends Controller
                     $file = $request->file('joinus_image');
                     $filename = 'img_' . time() . '.' . $file->extension();
                     $file->move(public_path() . '/lure/images/', $filename);
+                    $homeContent->join_us_image = $filename;
                 }
                 
-                $homeContent->join_us_image = $filename ?? $homeContent->join_us_image;
+               
                 break;
         
             case 'expertpicks':
@@ -74,25 +76,23 @@ class SiteContentController extends Controller
                     $file = $request->file('banner_logo');
                     $filename_logo = 'img_' . time() . '.' . $file->extension();
                     $file->move(public_path() . '/lure/images/', $filename_logo);
+                    $homeContent->bannerSec_logo = $filename_logo;
                 }
                 
-                $homeContent->bannerSec_logo = $filename_logo ?? $homeContent->bannerSec_logo;
-        
                 if ($request->hasFile('bg_image')) {
                     $bgfile = $request->file('bg_image');
                     $filename_bg = 'imgbg_' . time() . '.' . $bgfile->extension();
                     $bgfile->move(public_path() . '/lure/images/', $filename_bg);
+                    $homeContent->bannerSec_bgimage = $filename_bg;
                 }
                 
-                $homeContent->bannerSec_bgimage = $filename_bg ?? $homeContent->bannerSec_bgimage;
-        
                 if ($request->hasFile('bg_video')) {
                     $videofile = $request->file('bg_video');
                     $filename_video = 'video_' . time() . '.' . $videofile->extension();
                     $videofile->move(public_path('lure/images'), $filename_video);
+                    $homeContent->bannerSec_video = $filename_video;
                 }
                 
-                $homeContent->bannerSec_video = $filename_video ?? $homeContent->bannerSec_video;
                 break;
 
             case 'aboutus':
@@ -101,12 +101,72 @@ class SiteContentController extends Controller
                 $homeContent->aboutSec_text = $request->aboutus_text;
                 
                 break;
+            
+            case 'contentsec':
+                $homeContent->contentSec_heading = $request->contentsec_heading;
+                $homeContent->contentSec_text = $request->contentsec_text;
+                
+                if ($request->hasFile('contentsec_image')) {
+                    $contfile = $request->file('contentsec_image');
+                    $filename_cont = 'img_' . time() . '.' . $contfile->extension();
+                    $contfile->move(public_path() . '/lure/images/', $filename_cont);
+                    $homeContent->contentSec_image = $filename_cont;
+                }
+        
+                if ($request->hasFile('contentsec_simage')) {
+                    $contsfile = $request->file('contentsec_simage');
+                    $filename_conts = 'imggirl_' . time() . '.' . $contsfile->extension();
+                    $contsfile->move(public_path() . '/lure/images/', $filename_conts);
+                    $homeContent->contentSec_simage = $filename_conts;
+                }
+                
+                break;
         
             default:
                 // Handle other types or provide a default behavior
                 break;
         }
         $homeContent->save();
+        return redirect()->back()->with('success','Data Updated Successfully');
+    }
+
+    public function ApplyNowPage()
+    {
+        $applyNow = ApplyNowContent::first();
+        return view('admin.site-content.apply_now.apply',compact('applyNow')); 
+    }
+
+    public function ApplyNowPageUpdate(Request $request)
+    {
+        // echo "<pre>";
+        // print_r($request->all());
+        // die();
+
+        $applyNow = ApplyNowContent::first();
+        if(!$applyNow) {
+            $applyNow = new ApplyNowContent();
+        }
+
+        $applyNow->heading  = $request->heading;
+        $applyNow->sub_heading  = $request->sub_heading;
+        $applyNow->submit_heading  = $request->submit_heading;
+        $applyNow->submit_text  = $request->submit_text;
+
+        if ($request->hasFile('bg_video')) {
+            $bgfile = $request->file('bg_video');
+            $filename_bg = 'vid_' . time() . '.' . $bgfile->extension();
+            $bgfile->move(public_path() . '/lure/images/', $filename_bg);
+            $applyNow->bg_video = $filename_bg;
+        }
+
+        if ($request->hasFile('submit_image')) {
+            $giffile = $request->file('submit_image');
+            $filename_gif = 'submit_' . time() . '.' . $giffile->extension();
+            $giffile->move(public_path() . '/lure/images/', $filename_gif);
+            $applyNow->submit_gif = $filename_gif;
+        }
+        $applyNow->save();
+
         return redirect()->back()->with('success','Data Updated Successfully');
     }
 
@@ -202,7 +262,7 @@ class SiteContentController extends Controller
 
     public function models()
     {
-        // $allModels = OurModels::where('status',1)->get();
+        // $allModels = OurModels::where('status',0)->get();
         $allModels = OurModels::all();
         return view('admin.models.index',compact('allModels'));
     }

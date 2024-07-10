@@ -14,7 +14,7 @@
                                 <div class="tab-pane active" id="site" role="tabpanel">
                                     <div class="card-inner pt-0">
                                         <h4 class="title nk-block-title">Expand Influence</h4>
-                                        <form action="{{ route('influence.content.update') }}" method="POST" enctype="multipart/form-data" class="gy-3 form-settings">
+                                        <form id="influenceForm" action="{{ route('influence.content.update') }}" method="POST" enctype="multipart/form-data" class="gy-3 form-settings">
                                             @csrf
                                             <div class="row g-3 align-center">
                                                 <div class="col-lg-3">
@@ -25,7 +25,7 @@
                                                 <div class="col-lg-9">
                                                     <div class="form-group">
                                                         <div class="form-control-wrap">
-                                                            <input type="text" class="form-control" name="influence_title" id="influence_title" placeholder="Expand Influence" value="{{ $influence_sec->heading ?? '' }}">
+                                                            <input type="text" class="form-control serviceinput" name="influence_title" id="influence_title" placeholder="Expand Influence" value="{{ $influence_sec->heading ?? '' }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -40,7 +40,7 @@
                                                 <div class="col-lg-9">
                                                     <div class="form-group">
                                                         <div class="form-control-wrap">
-                                                            <textarea class="form-control form-control" id="influence_text" placeholder="Lorem ipsum...." name="influence_text">{{ $influence_sec->text ?? '' }}</textarea>
+                                                            <textarea class="form-control form-control serviceinput" id="influence_text" placeholder="Lorem ipsum...." name="influence_text">{{ $influence_sec->text ?? '' }}</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -56,16 +56,18 @@
                                                     <div class="form-group">
                                                         <div class="form-control-wrap">
                                                             <div class="form-file">
-                                                                <input type="file"  class="form-file-input" id="before_video" name="before_video">
+                                                                <input type="file"  class="form-file-input @if(!isset($influence_sec->video_before) || $influence_sec->video_before == null) serviceinput @endif" id="before_video" name="before_video">
                                                                 <label class="form-file-label" for="before_video">Choose file</label>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    @if(isset($influence_sec->video_before) && $influence_sec->video_before != null)
                                                         <div class="video-container">
                                                             <video class="banner_bg" height="150px" width="200px" autoplay loop  muted playsinline id="vid">
                                                                 <source src="{{ asset('/lure/images') }}/{{ $influence_sec->video_before ?? '' }}" type="video/mp4">
                                                             </video>
                                                         </div>
-                                                    </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="row g-3 ">
@@ -79,16 +81,18 @@
                                                     <div class="form-group">
                                                         <div class="form-control-wrap">
                                                             <div class="form-file">
-                                                                <input type="file"  class="form-file-input" id="after_video" name="after_video">
+                                                                <input type="file"  class="form-file-input @if(!isset($influence_sec->video_after) || $influence_sec->video_after == null) serviceinput @endif" id="after_video" name="after_video">
                                                                 <label class="form-file-label" for="after_video">Choose file</label>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    @if(isset($influence_sec->video_after) && $influence_sec->video_after != null)
                                                         <div class="video-container">
                                                             <video class="banner_bg" height="150px" width="200px" autoplay loop  muted playsinline id="vid">
                                                                 <source src="{{ asset('/lure/images') }}/{{ $influence_sec->video_after ?? '' }}" type="video/mp4">
                                                             </video>
                                                         </div>
-                                                    </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="row g-3 ">
@@ -102,14 +106,16 @@
                                                     <div class="form-group">
                                                         <div class="form-control-wrap">
                                                             <div class="form-file">
-                                                                <input type="file"  class="form-file-input" id="before_image" name="before_image">
+                                                                <input type="file"  class="form-file-input " id="before_image" name="before_image">
                                                                 <label class="form-file-label" for="before_image">Choose file</label>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    @if(isset($influence_sec->image_before) && $influence_sec->image_before != null)
                                                         <div class="image-container">
                                                             <img height="200px" width="300px" src="{{ asset('/lure/images') }}/{{ $influence_sec->image_before ?? '' }}" alt="">
                                                         </div>
-                                                    </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="row g-3 ">
@@ -127,21 +133,22 @@
                                                                 <label class="form-file-label" for="after_image">Choose file</label>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    @if(isset($influence_sec->image_after) && $influence_sec->image_after != null)
                                                         <div class="image-container">
                                                             <img height="200px" width="300px" src="{{ asset('/lure/images') }}/{{ $influence_sec->image_after ?? '' }}" alt="">
                                                         </div>
-                                                    </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="row g-3">
                                                 <div class="col-lg-7">
                                                     <div class="form-group mt-2">
-                                                        <button type="submit" class="btn btn-lg btn-primary">Update</button>
+                                                        <button id="submitForm" type="button" class="btn btn-lg btn-primary">Update</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
-                                           
                                     </div>
                                 </div>
                             </div>
@@ -211,7 +218,7 @@
                 });
                 
                 if (valid) {
-                    $('#serviceForm').submit();
+                    $('#influenceForm').submit();
                 } else {
                     toastr.clear();
                     NioApp.Toast('All fields are required', 'error', {

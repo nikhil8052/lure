@@ -40,7 +40,11 @@
             <nav class="navbar navbar-expand-lg">
                 <div class="logo">
                     <a class="navbar-brand" href="{{ route('home') }}">
-                        <img src="{{ asset('lure/images/logo_pink.svg')}}" alt="">
+                        @if (isset($siteContent->site_logo) && $siteContent->site_logo != null)
+                            <img src="{{ asset('lure/images') }}/{{ $siteContent->site_logo ?? 'logo_pink.svg' }}" alt="">
+                        @else
+                            <img src="{{ asset('lure/images/logo_pink.svg')}}" alt="">
+                        @endif
                     </a>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -54,7 +58,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link"  href="{{ request()->routeIs('home') ? '#about_section' : url('/#about_section') }}">About</a>
@@ -112,7 +116,12 @@
                     <div class="col-md-6">
                         <div class="footer-details">
                             <div class="footer-logo">
-                                <img src="{{ asset('lure/images/footer-log.png') }}" alt="">
+                                @if (isset($siteContent->footer_logo) && $siteContent->footer_logo != null)
+                                    <img src="{{ asset('lure/images') }}/{{ $siteContent->footer_logo ?? 'footer-log.png' }}" alt="">
+                                @else
+                                    <img src="{{ asset('lure/images/footer-log.png') }}" alt="">
+                                @endif
+                                
                             </div>
                             <p>{{ $siteContent->about_team ??  'Our highly experienced team aids our clients in achieving their full potential on social
                                 media platforms. We strive to make your dreams a reality by maximizing your online

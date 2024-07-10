@@ -26,6 +26,7 @@ class UserSeeder extends Seeder
             'last_update' => now(), 
             'is_admin' => true,
             'created_at' => now(), 
+            'updated_at' => now(), 
         ]);
     }
 }

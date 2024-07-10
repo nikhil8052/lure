@@ -31152,9 +31152,9 @@ li {
 }
 
 @media (min-width: 576px) {
-  .link-list-menu a {
+  /* .link-list-menu a {
     padding: 1rem 1.5rem;
-  }
+  } */
 }
 .link-list-plain.no-bdr {
   padding: 0.5rem 0;

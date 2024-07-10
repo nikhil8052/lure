@@ -105,7 +105,7 @@
                                                                             <div class="form-control-wrap">
                                                                                 <label for="">Description</label>
                                                                                 <div class="form-control-wrap">
-                                                                                    <textarea style="min-height: 100px" class="form-control form-control serviceinput"  name="result[{{ $loop->iteration }}][description]"  placeholder="Lorem ipsum....">{{ $data['description'] ?? '' }}</textarea>
+                                                                                    <textarea style="min-height: 120px" class="form-control form-control serviceinput"  name="result[{{ $loop->iteration }}][description]"  placeholder="Lorem ipsum....">{{ $data['description'] ?? '' }}</textarea>
                                                                                 </div>
                                                                             </div>
                                                                         </div>

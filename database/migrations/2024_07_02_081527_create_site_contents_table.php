@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('footer_logo')->nullable();
             $table->string('site_copyrights')->nullable();
             $table->longText('company_address')->nullable();
+            $table->string('subscribe_sec_heading')->nullable();
+            $table->string('subscribe_sec_text')->nullable();
             $table->string('site_message')->nullable();
             $table->longText('about_team')->nullable();
             $table->timestamps();

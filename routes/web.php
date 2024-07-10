@@ -50,6 +50,9 @@ Route::group(['middleware' => ['is_admin']], function () {
     Route::post('admin-dashboard/remove-logo',[SiteContentController::class,'removelogo'])->name('remove.logo');
     Route::get('admin-dashboard/about-content',[SiteContentController::class,'aboutPage'])->name('web.about.page');
 
+    Route::get('admin-dashboard/applynow-content',[SiteContentController::class,'ApplyNowPage'])->name('web.applyNow.page');
+    Route::post('admin-dashboard/applynow-content-update',[SiteContentController::class,'ApplyNowPageUpdate'])->name('web.applyNow.page.update');
+
     Route::get('admin-dashboard/services',[SiteContentController::class,'services'])->name('web.services');
     Route::post('admin-dashboard/services/add',[SiteContentController::class,'addServices'])->name('add.services');
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\ApplyNowContent;
 use App\Models\ExpendInfluence;
 use App\Models\Faq;
 use App\Models\HomePageContent;
@@ -28,6 +29,7 @@ class FrontController extends Controller
 
     public function applyNow()
     {
-        return view('front.apply_now.index');
+        $applyNow = ApplyNowContent::first();
+        return view('front.apply_now.index',compact('applyNow'));
     }
 }

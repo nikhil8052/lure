@@ -400,9 +400,9 @@
             </div>
             <div class="button_col">
                 <div class="button_wrap_compare">
-                    <a href="#" class="cta_btn cta_gradient">Before</a>
+                    <a  class="cta_btn cta_gradient">Before</a>
                     <img src="{{ asset('lure/images/vs.svg')}}" class="vs_image">
-                    <a href="#" class="cta_btn cta_gradient">After</a>
+                    <a  class="cta_btn cta_gradient">After</a>
                     <div class="dot_line"></div>
                 </div>
             </div>
@@ -721,25 +721,37 @@
         <div class="domin_block">
             <div class="container">
                 <div class="dominate_content p_140">
-                    <img src="{{ asset('lure/images/ai-beautiful-hot-girl-png-image 1.png') }}" class="hot_grl">
+                    @if(isset($homecontent->contentSec_simage) && $homecontent->contentSec_simage != null)
+                        <img class="hot_grl" src="{{ asset('lure/images') }}/{{ $homecontent->contentSec_simage ?? 'ai-beautiful-hot-girl-png-image 1.png' }}" >
+                    @else 
+                        <img src="{{ asset('lure/images/ai-beautiful-hot-girl-png-image 1.png') }}" class="hot_grl">
+                    @endif
                     <div class="row">
                         <div class="col-md-6">
                             <div class="dominate_head">
-                                <h2 class="pink">Content Creation
-                                </h2>
-                                <p>The easiest way to take your brand and feed from casual to professional is with high
-                                    quality videography and photography. In fact, videography alone can increase your
-                                    engagement by nearly 35%. Our team is experienced in creative directing and stays ahead
-                                    of trends to make sure you remain always at the top of your game. </p>
-                                  <p> We have an extensive network of domestic and international creatives to help our clients
-                                    meet all of their ideal content desires.</p>
-    
+                                <h2 class="pink">{{ $homecontent->contentSec_heading  ?? 'Content Creation' }}</h2>
+                                @if(isset($homecontent->contentSec_text) && $homecontent->contentSec_heading != null)
+                                    <p>{!! $homecontent->contentSec_text !!}</p>
+                                @else
+                                    <p>The easiest way to take your brand and feed from casual to professional is with high
+                                        quality videography and photography. In fact, videography alone can increase your
+                                        engagement by nearly 35%. Our team is experienced in creative directing and stays ahead
+                                        of trends to make sure you remain always at the top of your game.
+                                    </p>
+                                    <p> We have an extensive network of domestic and international creatives to help our clients
+                                        meet all of their ideal content desires.
+                                    </p>
+                                @endif
                             </div>
                         </div>
     
                         <div class="col-md-6">
                             <div class="market_img">
-                                <img src="{{ asset('lure/images/market.png') }}" alt="">
+                                @if(isset($homecontent->contentSec_image) && $homecontent->contentSec_image != null)
+                                    <img src="{{ asset('lure/images') }}/{{ $homecontent->contentSec_image ?? 'market.png' }}" alt="">
+                                @else 
+                                    <img src="{{ asset('lure/images/market.png') }}" alt="">
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -797,7 +809,11 @@
                     </div>
                     <div class="col-md-5">
                         <div class="join_logo">
-                            <img src="{{ asset('lure/images/sdghd.png') }}" alt="">
+                            @if(isset($homecontent->join_us_image) && $homecontent->join_us_image != null)
+                                <img src="{{ asset('lure/images') }}/{{ $homecontent->join_us_image ?? 'sdghd.png' }}" alt="{{ $homecontent->join_us_image ?? 'sdghd.png' }}">
+                            @else
+                                <img src="{{ asset('lure/images/sdghd.png') }}" alt="">
+                            @endif
                         </div>
                        <!--  <div class="apply-img">
                             <img src="images/apply-now.png" alt="">
