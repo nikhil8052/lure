@@ -23,5 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(FaqsSeeder::class);
         $this->call(ExpendInfluenceSeeder::class);
         $this->call(ApplyNowSeeder::class);
+        $this->call(OurWorkSeeder::class);
+        $this->call(SocialPlatformSeeder::class);
     }
 }

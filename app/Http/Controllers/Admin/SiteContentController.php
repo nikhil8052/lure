@@ -8,6 +8,8 @@ use App\Models\ExpendInfluence;
 use App\Models\HomePageContent;
 use App\Models\OurModels;
 use App\Models\OurResult;
+use App\Models\OurWork;
+use App\Models\SocialPlatforms;
 use App\Models\Services;
 use Illuminate\Http\Request;
 
@@ -40,7 +42,7 @@ class SiteContentController extends Controller
                 
                 if ($request->hasFile('joinus_image')) {
                     $file = $request->file('joinus_image');
-                    $filename = 'img_' . time() . '.' . $file->extension();
+                    $filename = 'img_'.rand() . time() . '.' . $file->extension();
                     $file->move(public_path() . '/lure/images/', $filename);
                     $homeContent->join_us_image = $filename;
                 }
@@ -56,7 +58,7 @@ class SiteContentController extends Controller
                 foreach ($request->logos as $data) {
                     if ($data->isValid()) {
                         $file = $data;
-                        $filename = 'img_' . $count . time() . '.' . $file->extension();
+                        $filename = 'img_'.rand() . $count . time() . '.' . $file->extension();
                         $file->move(public_path() . '/lure/images/', $filename);
                         $filenames[$filename] = $filename;
                     }
@@ -74,21 +76,21 @@ class SiteContentController extends Controller
                 
                 if ($request->hasFile('banner_logo')) {
                     $file = $request->file('banner_logo');
-                    $filename_logo = 'img_' . time() . '.' . $file->extension();
+                    $filename_logo = 'img_'.rand() . time() . '.' . $file->extension();
                     $file->move(public_path() . '/lure/images/', $filename_logo);
                     $homeContent->bannerSec_logo = $filename_logo;
                 }
                 
                 if ($request->hasFile('bg_image')) {
                     $bgfile = $request->file('bg_image');
-                    $filename_bg = 'imgbg_' . time() . '.' . $bgfile->extension();
+                    $filename_bg = 'imgbg_'.rand() . time() . '.' . $bgfile->extension();
                     $bgfile->move(public_path() . '/lure/images/', $filename_bg);
                     $homeContent->bannerSec_bgimage = $filename_bg;
                 }
                 
                 if ($request->hasFile('bg_video')) {
                     $videofile = $request->file('bg_video');
-                    $filename_video = 'video_' . time() . '.' . $videofile->extension();
+                    $filename_video = 'video_'.rand() . time() . '.' . $videofile->extension();
                     $videofile->move(public_path('lure/images'), $filename_video);
                     $homeContent->bannerSec_video = $filename_video;
                 }
@@ -108,14 +110,14 @@ class SiteContentController extends Controller
                 
                 if ($request->hasFile('contentsec_image')) {
                     $contfile = $request->file('contentsec_image');
-                    $filename_cont = 'img_' . time() . '.' . $contfile->extension();
+                    $filename_cont = 'img_'.rand() . time() . '.' . $contfile->extension();
                     $contfile->move(public_path() . '/lure/images/', $filename_cont);
                     $homeContent->contentSec_image = $filename_cont;
                 }
         
                 if ($request->hasFile('contentsec_simage')) {
                     $contsfile = $request->file('contentsec_simage');
-                    $filename_conts = 'imggirl_' . time() . '.' . $contsfile->extension();
+                    $filename_conts = 'imggirl_'.rand() . time() . '.' . $contsfile->extension();
                     $contsfile->move(public_path() . '/lure/images/', $filename_conts);
                     $homeContent->contentSec_simage = $filename_conts;
                 }
@@ -154,14 +156,14 @@ class SiteContentController extends Controller
 
         if ($request->hasFile('bg_video')) {
             $bgfile = $request->file('bg_video');
-            $filename_bg = 'vid_' . time() . '.' . $bgfile->extension();
+            $filename_bg = 'vid_'.rand() . time() . '.' . $bgfile->extension();
             $bgfile->move(public_path() . '/lure/images/', $filename_bg);
             $applyNow->bg_video = $filename_bg;
         }
 
         if ($request->hasFile('submit_image')) {
             $giffile = $request->file('submit_image');
-            $filename_gif = 'submit_' . time() . '.' . $giffile->extension();
+            $filename_gif = 'submit_'.rand() . time() . '.' . $giffile->extension();
             $giffile->move(public_path() . '/lure/images/', $filename_gif);
             $applyNow->submit_gif = $filename_gif;
         }
@@ -190,28 +192,28 @@ class SiteContentController extends Controller
 
         if ($request->hasFile('before_video')) {
             $videobfile = $request->file('before_video');
-            $filename_bvideo = 'video_before' . time() . '.' . $videobfile->extension();
+            $filename_bvideo = 'video_before'.rand() . time() . '.' . $videobfile->extension();
             $videobfile->move(public_path('lure/images'), $filename_bvideo);
         }
         $influence_sec->video_before = $filename_bvideo ?? $influence_sec->video_before;
 
         if ($request->hasFile('after_video')) {
             $videoafile = $request->file('after_video');
-            $filename_avideo = 'video_after' . time() . '.' . $videoafile->extension();
+            $filename_avideo = 'video_after'.rand() . time() . '.' . $videoafile->extension();
             $videoafile->move(public_path('lure/images'), $filename_avideo);
         }
         $influence_sec->video_after = $filename_avideo ?? $influence_sec->video_after;
 
         if ($request->hasFile('before_image')) {
             $beforefile = $request->file('before_image');
-            $filename_bimg = 'img_before' . time() . '.' . $beforefile->extension();
+            $filename_bimg = 'img_before'.rand() . time() . '.' . $beforefile->extension();
             $beforefile->move(public_path('lure/images'), $filename_bimg);
         }
         $influence_sec->image_before = $filename_bimg ?? $influence_sec->image_before;
 
         if ($request->hasFile('after_image')) {
             $afterfile = $request->file('after_image');
-            $filename_aimg = 'img_after' . time() . '.' . $afterfile->extension();
+            $filename_aimg = 'img_after'.rand() . time() . '.' . $afterfile->extension();
             $afterfile->move(public_path('lure/images'), $filename_aimg);
         }
         $influence_sec->image_after = $filename_aimg ?? $influence_sec->image_after;
@@ -278,7 +280,7 @@ class SiteContentController extends Controller
         }
         if($request->hasFile('image')) {
             $file = $request->file('image');
-            $filename ='Model_' . time() . '.' . $file->extension();
+            $filename ='Model_'.rand() . time() . '.' . $file->extension();
             $file->move(public_path() . '/Models_Images/', $filename);
 
             $model = new OurModels();
@@ -333,7 +335,7 @@ class SiteContentController extends Controller
 
         $results = OurResult::first();
         if(!$results) {
-            $results = new OurResult();
+            $results = new OurWork();
         }
         $results->title = $request->title;
         // $results->results = json_encode($request->result);
@@ -342,7 +344,7 @@ class SiteContentController extends Controller
         foreach($request->result as $data) {
             if(isset($data['image']) && $data['image']->isValid()) {
                 $file = $data['image'];
-                $filename ='Model_' . time() . '.' . $file->extension();
+                $filename ='img_'.rand() . time() . '.' . $file->extension();
                 $file->move(public_path() . '/Our_result/', $filename);
 
             } else if(isset($data['imageVal']) && $data['imageVal'] != null) {
@@ -361,6 +363,115 @@ class SiteContentController extends Controller
 
         $results->results = json_encode($result_array);
         $results->save();
+
+        return redirect()->back()->with('success','Data Updated Successfully');
+    }
+
+    public function works()
+    {
+        $results = OurWork::first();
+        // $results = null;
+        return view('admin.our_works.index',compact('results'));
+    }
+
+    public function addworks(Request $request)
+    {
+
+        // echo "<pre>";
+        // print_r($request->all());
+        // die();
+
+        $results = OurWork::first();
+        if(!$results) {
+            $results = new OurWork();
+        }
+        $results->title = $request->title;
+        // $results->results = json_encode($request->result);
+
+        $result_array = [];
+        foreach($request->result as $data) {
+            if(isset($data['image']) && $data['image']->isValid()) {
+                $file = $data['image'];
+                $filename ='img_' .rand(). time() . '.' . $file->extension();
+                $file->move(public_path() . '/Our_result/', $filename);
+
+            } else if(isset($data['imageVal']) && $data['imageVal'] != null) {
+                $filename = $data['imageVal'];
+            } else {
+                $filename = null;
+            }
+            if(isset($filename) && $filename !=  null) {
+                $result_array[] = [
+                    'heading' => $data['heading'],
+                    'image' => $filename,
+                    'description' => $data['description']
+                ];
+            }
+        }
+
+        $results->works = json_encode($result_array);
+        $results->save();
+
+        return redirect()->back()->with('success','Data Updated Successfully');
+    }
+
+    public function Platforms()
+    {
+        $results = SocialPlatforms::first();
+        return view('admin.platforms.index',compact('results'));
+    }
+
+    public function addPlatforms(Request $request)
+    {
+
+        // echo "<pre>";
+        // print_r($request->all());
+        // die();
+
+        $record = SocialPlatforms::first();
+        if(!$record) {
+            $record = new SocialPlatforms();
+        }
+        $record->sec_title = $request->title;
+
+        if($request->hasFile('sec_logo')) {
+            $sec_logo = $request->file('sec_logo');
+            $sec_logoname ='img_'.rand() . time() . '.' . $sec_logo->extension();
+            $sec_logo->move(public_path() . '/Our_result/', $sec_logoname);
+
+            $record->web_logo = $sec_logoname;
+        }
+
+        if($request->hasFile('result_image')) {
+            $result_image = $request->file('result_image');
+            $result_imagename ='img_'.rand() . time() . '.' . $result_image->extension();
+            $result_image->move(public_path() . '/Our_result/', $result_imagename);
+            
+            $record->result_image = $result_imagename;
+        }
+
+        $result_array = [];
+        foreach($request->platform as $data) {
+            if(isset($data['image']) && $data['image']->isValid()) {
+                $file = $data['image'];
+                $filename ='img_' .rand(). time() . '.' . $file->extension();
+                $file->move(public_path() . '/Our_result/', $filename);
+
+            } else if(isset($data['imageVal']) && $data['imageVal'] != null) {
+                $filename = $data['imageVal'];
+            } else {
+                $filename = null;
+            }
+            if(isset($filename) && $filename !=  null) {
+                $result_array[] = [
+                    'title' => $data['title'],
+                    'image' => $filename,
+                ];
+            }
+        }
+
+        $record->platforms = json_encode($result_array);
+        $record->save();
 
         return redirect()->back()->with('success','Data Updated Successfully');
     }

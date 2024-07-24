@@ -84,8 +84,11 @@
                                         <span class="nk-menu-text">Web Content</span>
                                     </a>
                                     <ul class="nk-menu-sub" >
-                                        <li class="nk-menu-item">
+                                        <!-- <li class="nk-menu-item">
                                             <a href="{{ route('web.models') }}" class="nk-menu-link"><span class="nk-menu-text">Models</span></a>
+                                        </li> -->
+                                        <li class="nk-menu-item">
+                                            <a href="{{ route('web.work') }}" class="nk-menu-link"><span class="nk-menu-text">Our Work</span></a>
                                         </li>
                                         <li class="nk-menu-item">
                                             <a href="{{ route('web.services') }}" class="nk-menu-link"><span class="nk-menu-text">Services</span></a>
@@ -96,11 +99,14 @@
                                         <li class="nk-menu-item">
                                             <a href="{{ route('influence.content') }}" class="nk-menu-link"><span class="nk-menu-text">Expand Influence</span></a>
                                         </li>
+                                        <li class="nk-menu-item">
+                                            <a href="{{ route('web.social.platforms') }}" class="nk-menu-link"><span class="nk-menu-text">Social Platforms</span></a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li class="nk-menu-item has-sub">
                                     <a href="{{ route('web.home.page') }}" class="nk-menu-link nk-menu-toggle">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-files"></em></span>
+                                        <span class="nk-menu-icon"><em class="icon ni ni-folders-fill"></em></span>
                                         <span class="nk-menu-text">Web Pages</span>
                                     </a>
                                     <ul class="nk-menu-sub" >
@@ -113,6 +119,18 @@
                                     </ul>
                                 </li>
                                 <li class="nk-menu-item active current-page">
+                                    <a href="{{ route('admin.dashboard.clients') }}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-users-fill"></em></span>
+                                        <span class="nk-menu-text">All Applicant's</span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item active current-page">
+                                    <a href="{{ route('admin.dashboard.emails') }}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-emails"></em></span>
+                                        <span class="nk-menu-text">Newsletter Emails</span>
+                                    </a>
+                                </li>
+                                <!-- <li class="nk-menu-item active current-page">
                                     <a href="{{ route('website.testimonials') }}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-users-fill"></em></span>
                                         <span class="nk-menu-text">Testimonials</span>
@@ -123,7 +141,7 @@
                                         <span class="nk-menu-icon"><em class="icon ni ni-file-docs"></em></span>
                                         <span class="nk-menu-text">Faqs</span>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="nk-menu-item active current-page">
                                     <a href="{{ route('website.settings') }}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-setting-alt-fill"></em></span>

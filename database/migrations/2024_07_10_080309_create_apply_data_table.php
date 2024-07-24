@@ -16,9 +16,10 @@ return new class extends Migration
             $table->string('apply_for')->nullable();
             $table->string('name')->nullable();
             $table->string('email')->nullable();
+            $table->string('contact_method')->nullable();
             $table->string('contact')->nullable();
             $table->string('social_media_account')->nullable();
-            $table->integer('able_to_tarvel')->default(0);
+            $table->string('able_to_tarvel')->nullable();
             $table->longText('additional_data')->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();

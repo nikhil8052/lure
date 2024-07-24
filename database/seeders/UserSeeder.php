@@ -27,6 +27,17 @@ class UserSeeder extends Seeder
             'is_admin' => true,
             'created_at' => now(), 
             'updated_at' => now(), 
+        ],
+        [
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'email' => 'Contact@luremgt.co',
+            'phone_number' => null,
+            'password' => Hash::make('admin01'),
+            'last_update' => now(), 
+            'is_admin' => true,
+            'created_at' => now(), 
+            'updated_at' => now(), 
         ]);
     }
 }

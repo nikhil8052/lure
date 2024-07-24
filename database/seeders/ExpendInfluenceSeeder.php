@@ -17,11 +17,11 @@ class ExpendInfluenceSeeder extends Seeder
 
         DB::table('expend_influences')->insert([
             'heading' => 'Expand Your Influence',
-            'text' => 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
-            'video_before' => 'video_before1720531148.mp4',
-            'video_after' => 'video_1720530944.mp4',
-            'image_before' => 'img_before1720531148.png',
-            'image_after' => 'img_1720530944.png',
+            'text' => 'We highly focus on helping our Creators improve their Social Presence with our New Production plan.',
+            'video_before' => 'video_before1721631978.mp4',
+            'video_after' => 'video_after1721631978.mp4',
+            'image_before' => 'img_before1721648652.png',
+            'image_after' => 'img_after1721714242.png',
             'status' => 1,
             'created_at' => now(), 
             'updated_at' => now(), 

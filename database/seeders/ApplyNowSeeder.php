@@ -16,12 +16,12 @@ class ApplyNowSeeder extends Seeder
         DB::table('apply_now_contents')->truncate();
 
         DB::table('apply_now_contents')->insert([
-            'bg_video' => 'vid_1720597836.mp4',
+            'bg_video' => 'vid_1721631922.mp4',
             'heading' => 'Hey there!',
             'sub_heading' => 'Here is the queen',
             'submit_heading' => 'Thank you for applying.',
             'submit_text' => 'We will reach out to you as soon as we can.',
-            'submit_gif' => 'submit_1720597836.gif',
+            'submit_gif' => 'submit_1721631922.gif',
             'status' => 1,
             'created_at' => now(), 
             'updated_at' => now(), 

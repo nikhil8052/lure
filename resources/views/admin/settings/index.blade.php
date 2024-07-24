@@ -40,12 +40,12 @@
                                                     <div class="form-group">
                                                         <div class="form-control-wrap">
                                                             <div class="form-file">
-                                                                <input type="file"  class="form-file-input" id="site-logo" name="site_logo">
+                                                                <input type="file"  class="form-file-input  @if(!isset($siteContent->site_logo) || $siteContent->site_logo == null ) serviceinput @endif" id="site-logo" name="site_logo">
                                                                 <label class="form-file-label" for="site-logo">Choose file</label>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    @if($siteContent->site_logo != null )
+                                                    @if(isset($siteContent->site_logo) && $siteContent->site_logo != null )
                                                         <div class="image-container">
                                                             <img style="background-color: black" height="200px" width="300px" src="{{ asset('/lure/images') }}/{{ $siteContent->site_logo ?? '' }}" alt="">
                                                         </div>
@@ -67,7 +67,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row g-3 align-center">
+                                            <!-- <div class="row g-3 align-center">
                                                 <div class="col-lg-5">
                                                     <div class="form-group">
                                                         <label class="form-label" for="comp_number">Company Number</label>
@@ -81,7 +81,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="row g-3 align-center">
                                                 <div class="col-lg-5">
                                                     <div class="form-group">
@@ -91,7 +91,7 @@
                                                 <div class="col-lg-7">
                                                     <div class="form-group">
                                                         <div class="form-control-wrap">
-                                                            <input type="text" class="form-control" name="sub_sec_heading" id="sub_sec_heading" placeholder="Email Updates" value="{{ $siteContent->subscribe_sec_heading ?? '' }}">
+                                                            <input type="text" class="form-control serviceinput" name="sub_sec_heading" id="sub_sec_heading" placeholder="Email Updates" value="{{ $siteContent->subscribe_sec_heading ?? '' }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -105,7 +105,7 @@
                                                 <div class="col-lg-7">
                                                     <div class="form-group">
                                                         <div class="form-control-wrap">
-                                                            <input type="text" class="form-control" name="sub_sec_text" id="sub_sec_text" placeholder="Get Email Updates" value="{{ $siteContent->subscribe_sec_text ?? '' }}">
+                                                            <input type="text" class="form-control serviceinput" name="sub_sec_text" id="sub_sec_text" placeholder="Get Email Updates" value="{{ $siteContent->subscribe_sec_text ?? '' }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -121,19 +121,19 @@
                                                     <div class="form-group">
                                                         <div class="form-control-wrap">
                                                             <div class="form-file">
-                                                                <input type="file"  class="form-file-input" id="footer-logo" name="footer_logo">
+                                                                <input type="file"  class="form-file-input @if(!isset($siteContent->footer_logo) || $siteContent->footer_logo == null ) serviceinput @endif" id="footer-logo" name="footer_logo">
                                                                 <label class="form-file-label" for="footer-logo">Choose file</label>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    @if($siteContent->footer_logo != null )
+                                                    @if(isset($siteContent->footer_logo) && $siteContent->footer_logo != null )
                                                         <div class="image-container">
                                                             <img style="background-color: black" height="200px" width="300px" src="{{ asset('/lure/images') }}/{{ $siteContent->footer_logo ?? '' }}" alt="">
                                                         </div>
                                                     @endif
                                                 </div>
                                             </div>
-                                            <div class="row g-3 align-center">
+                                            <!-- <div class="row g-3 align-center">
                                                 <div class="col-lg-5">
                                                     <div class="form-group">
                                                         <label class="form-label" for="company_address"> Company Address</label>
@@ -149,8 +149,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            
+                                            </div> -->
                                             <div class="row g-3 align-center">
                                                 <div class="col-lg-5">
                                                     <div class="form-group">
@@ -162,7 +161,7 @@
                                                     <div class="form-group">
                                                         <div class="form-control-wrap">
                                                             <div class="form-control-wrap">
-                                                                <input type="text" name="comp_message" class="form-control" placeholder="Achive more" id="comp_message" value="{{ $siteContent->site_message ?? '' }}">
+                                                                <input type="text" name="comp_message" class="form-control serviceinput" placeholder="Achive more" id="comp_message" value="{{ $siteContent->site_message ?? '' }}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -178,7 +177,7 @@
                                                 <div class="col-lg-7">
                                                     <div class="form-group">
                                                         <div class="form-control-wrap">
-                                                            <input type="text" class="form-control" name="comp_copyright" placeholder="Copyright" id="comp-copyright" value="{{ $siteContent->site_copyrights ?? '' }}">
+                                                            <input type="text" class="form-control serviceinput" name="comp_copyright" placeholder="Copyright" id="comp-copyright" value="{{ $siteContent->site_copyrights ?? '' }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -186,7 +185,7 @@
                                             <div class="row g-3">
                                                 <div class="col-lg-7">
                                                     <div class="form-group mt-2">
-                                                        <button type="submit" class="btn btn-lg btn-primary">Update</button>
+                                                        <button type="submit"  class="btn btn-lg btn-primary">Update</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -281,4 +280,36 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            $('.form-settings').submit(function(event) {
+                event.preventDefault(); 
+                
+                let valid = true;
+                
+                $(this).find('.serviceinput').each(function() {
+                    if ($(this).val().trim() === '') {
+                        valid = false;
+                        $(this).addClass('is-invalid');
+                    } else {
+                        $(this).removeClass('is-invalid');
+                    }
+                });
+                
+                // If all fields are valid, submit the form
+                if (valid) {
+                    toastr.clear();
+                    $(this).off('submit').submit(); // Submit the form
+                } else {
+                    toastr.clear();
+                    NioApp.Toast('All fields are required', 'error', {
+                        position: 'top-right'
+                    });
+                }
+            });
+            $(document).on('input', '.serviceinput', function() {
+                $(this).removeClass('is-invalid'); 
+            });
+        });
+    </script>
 @endsection

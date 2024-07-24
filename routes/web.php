@@ -59,12 +59,27 @@ Route::group(['middleware' => ['is_admin']], function () {
     Route::get('admin-dashboard/results',[SiteContentController::class,'results'])->name('web.results');
     Route::post('admin-dashboard/result/add',[SiteContentController::class,'addresults'])->name('add.results');
 
+    Route::get('admin-dashboard/our-work',[SiteContentController::class,'works'])->name('web.work');
+    Route::post('admin-dashboard/works/add',[SiteContentController::class,'addworks'])->name('add.works');
+
+    Route::get('admin-dashboard/social-platforms',[SiteContentController::class,'Platforms'])->name('web.social.platforms');
+    Route::post('admin-dashboard/social-platforms/add',[SiteContentController::class,'addPlatforms'])->name('add.social.platforms');
+
     Route::get('admin-dashboard/models',[SiteContentController::class,'models'])->name('web.models');
     Route::post('admin-dashboard/model/add',[SiteContentController::class,'AddModels'])->name('add.models');
     Route::get('admin-dashboard/model-image-remove/{id}',[SiteContentController::class,'ModelRemove']);
     Route::get('/change-model-status/{id}',[SiteContentController::class,'changeModelStatus']);
 
+    Route::get('/admin-dashboard/all-Clients',[AdminDashController::class,'AllApplication'])->name('admin.dashboard.clients');
+    Route::get('/admin-dashboard/remove-Client/{id}',[AdminDashController::class,'removeClient'])->name('remove.client');
+
+    Route::get('/admin-dashboard/email-updates',[AdminDashController::class,'EmailUpdated'])->name('admin.dashboard.emails');
+    Route::get('/admin-dashboard/remove-email/{id}',[AdminDashController::class,'removeEmail'])->name('remove.email');
+
 });
 
 Route::get('/',[FrontController::class,'index'])->name('home');
 Route::get('/apply-now',[FrontController::class,'applyNow'])->name('apply.now');
+Route::post('/send-mail',[FrontController::class,'Sendmail'])->name('send.mail');
+Route::post('/check-mail',[FrontController::class,'Checkmail'])->name('check.mail');
+Route::post('/subscribe',[FrontController::class,'subscribe'])->name('subscribe');

@@ -51,12 +51,12 @@
                                                 <div class="form-group">
                                                     <div class="form-control-wrap">
                                                         <div class="form-file">
-                                                            <input type="file"  class="form-file-input @if ($homeContent->bannerSec_logo == null ) serviceinput @endif" id="banner_logo" name="banner_logo">
+                                                            <input type="file"  class="form-file-input @if (!isset($homeContent->bannerSec_logo) || $homeContent->bannerSec_logo == null ) serviceinput @endif" id="banner_logo" name="banner_logo">
                                                             <label class="form-file-label" for="banner_logo">Choose file</label>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @if (isset($homeContent->bannerSec_logo) &&$homeContent->bannerSec_logo != null )
+                                                @if (isset($homeContent->bannerSec_logo) && $homeContent->bannerSec_logo != null )
                                                     <div class="image-container" >
                                                         <img style="background-color: black" height="150px" width="350px" src="{{ asset('/lure/images') }}/{{ $homeContent->bannerSec_logo ?? '' }}" alt="">
                                                     </div>
@@ -73,7 +73,7 @@
                                                 <div class="form-group">
                                                     <div class="form-control-wrap">
                                                         <div class="form-file">
-                                                            <input type="file"  class="form-file-input @if ($homeContent->bannerSec_video == null ) serviceinput @endif" id="bg_video" name="bg_video">
+                                                            <input type="file"  class="form-file-input @if (!isset($homeContent->bannerSec_video) || $homeContent->bannerSec_video == null ) serviceinput @endif" id="bg_video" name="bg_video">
                                                             <label class="form-file-label" for="bg_video">Choose file</label>
                                                         </div>
                                                     </div>
@@ -98,7 +98,7 @@
                                                 <div class="form-group">
                                                     <div class="form-control-wrap">
                                                         <div class="form-file">
-                                                            <input type="file"  class="form-file-input @if ($homeContent->bannerSec_bgimage == null ) serviceinput @endif" id="bg_image" name="bg_image">
+                                                            <input type="file"  class="form-file-input @if (!isset($homeContent->bannerSec_bgimage) || $homeContent->bannerSec_bgimage == null ) serviceinput @endif" id="bg_image" name="bg_image">
                                                             <label class="form-file-label" for="bg_image">Choose file</label>
                                                         </div>
                                                     </div>
@@ -276,9 +276,9 @@
                                                             @if(isset($homeContent->expertpicks_logos) && $homeContent->expertpicks_logos != null && !empty(json_decode($homeContent->expertpicks_logos)))
                                                                 <input type="file"  class="form-file-input"  name="logos[]">
                                                             @else
-                                                                <input type="file"  class="form-file-input serviceinput"  name="logos[]">
+                                                                <input type="file"  class="form-file-input serviceinput"  name="logos[]" id="logo1">
                                                             @endif
-                                                            <label class="form-file-label" >Choose file</label>
+                                                            <label class="form-file-label" for="logo1" >Choose file</label>
                                                         </div>
                                                         <span style="font-size: 25px" id="AddMorelogo"><em class="icon ni ni-plus-round-fill"></em></span>
                                                     </div>
@@ -292,11 +292,11 @@
                                                         <?php $i = 1; ?>
                                                         @foreach (json_decode($homeContent->expertpicks_logos,true) as $key => $logo)
                                                             @if( $i == 1)
-                                                                <div class="p-2 m-2 d-flex" style="min-height: 30px;min-width: 50px;">
+                                                                <div class="p-2 m-2 d-flex" style="min-height: 25px;min-width: 40px;">
                                                                     <img src="{{ asset('/lure/images') }}/{{ $logo }}" alt="">
                                                                 </div>
                                                             @else
-                                                                <div class="p-2 m-2 d-flex" style="min-height: 30px;min-width: 50px;">
+                                                                <div class="p-2 m-2 d-flex" style="min-height: 25px;min-width: 40px;">
                                                                     <img src="{{ asset('/lure/images') }}/{{ $logo }}" alt="">
                                                                     <span style="font-size: 25px" data-index="{{ $key }}" class="remove_image"><em class="icon ni ni-trash-fill"></em></span>
                                                                 </div>
@@ -382,7 +382,7 @@
                                                 </div>
                                                 @if(isset($homeContent->join_us_image) && $homeContent->join_us_image != null )
                                                     <div class="image-container">
-                                                        <img style="background-color: black" height="200px" width="300px" src="{{ asset('/lure/images') }}/{{ $homeContent->join_us_image ?? '' }}" alt="">
+                                                        <img style="background-color: black" height="200px" width="200px" src="{{ asset('/lure/images') }}/{{ $homeContent->join_us_image ?? '' }}" alt="">
                                                     </div>
                                                 @endif
                                             </div>
@@ -455,14 +455,14 @@
                                                 <div class="form-group">
                                                     <div class="form-control-wrap">
                                                         <div class="form-file">
-                                                            <input type="file"  class="form-file-input @if(!isset($homeContent->contentSec_image) || $homeContent->contentSec_image == null ) serviceinput @endif" id="contentsec_image" name="contentsec_image">
+                                                            <input type="file" class="form-file-input @if(!isset($homeContent->contentSec_image) || $homeContent->contentSec_image == null ) serviceinput @endif" id="contentsec_image" name="contentsec_image">
                                                             <label class="form-file-label" for="contentsec_image">Choose file</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 @if(isset($homeContent->contentSec_image) && $homeContent->contentSec_image != null )
                                                     <div class="image-container">
-                                                        <img style="background-color: black" height="200px" width="300px" src="{{ asset('/lure/images') }}/{{ $homeContent->contentSec_image ?? '' }}" alt="">
+                                                        <img style="background-color: black" height="200px" width="200px" src="{{ asset('/lure/images') }}/{{ $homeContent->contentSec_image ?? '' }}" alt="">
                                                     </div>
                                                 @endif
                                             </div>
@@ -484,7 +484,7 @@
                                                 </div>
                                                 @if(isset($homeContent->contentSec_simage) && $homeContent->contentSec_simage != null )
                                                     <div class="image-container">
-                                                        <img style="background-color: black" height="200px" width="300px" src="{{ asset('/lure/images') }}/{{ $homeContent->contentSec_simage ?? '' }}" alt="">
+                                                        <img style="background-color: black" height="200px" width="200px" src="{{ asset('/lure/images') }}/{{ $homeContent->contentSec_simage ?? '' }}" alt="">
                                                     </div>
                                                 @endif
                                             </div>
@@ -527,6 +527,7 @@
 </div>
 <script>
     $(document).ready(function(){
+        totalLogosInput = 1;
         ClassicEditor.create(document.querySelector('#aboutus_text'));
         ClassicEditor.create(document.querySelector('#contentsec_text'));
         $('.sideLink').on('click',function(){
@@ -552,16 +553,18 @@
         });
 
         $('#AddMorelogo').on('click',function(){
+            nextlogoinput = totalLogosInput +1;
             $html_ = `<div class="form-group removeable_logoinput">
                         <div class="form-control-wrap d-flex">
                             <div class="form-file">
-                                <input type="file"  class="form-file-input serviceinput"  name="logos[]">
-                                <label class="form-file-label" >Choose file</label>
+                                <input type="file"  class="form-file-input serviceinput"  name="logos[]" id="logo${nextlogoinput}">
+                                <label class="form-file-label" for="logo${nextlogoinput}">Choose file</label>
                             </div>
                             <span style="font-size: 25px" class="removelogoInput"><em class="icon ni ni-trash-fill"></em></span>
                         </div>
                     </div>`;
             $('#logoContainer').append($html_);
+            totalLogosInput = nextlogoinput;
         });
         $('#logoContainer').on('click', '.removelogoInput', function() {
             $(this).closest('.removeable_logoinput').remove();
@@ -585,7 +588,11 @@
                     window.location.reload();
                 },
                 error: function(xhr) {
-                   
+                    toastr.clear();
+                    NioApp.Toast('Something went wrong!', 'error', {
+                        position: 'top-right'
+                    });
+                    window.location.reload();
                 }
             });
         });
@@ -617,6 +624,10 @@
         });
         $(document).on('input', '.serviceinput', function() {
             $(this).removeClass('is-invalid'); 
+        });
+        $('#logoContainer').on('change', '.form-file-input', function() {
+            const fileName = this.files[0] ? this.files[0].name : 'Choose file';
+            $(this).next('.form-file-label').text(fileName);
         });
     });
 </script>

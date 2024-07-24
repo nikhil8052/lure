@@ -113,7 +113,7 @@
                                                     </div>
                                                     @if(isset($influence_sec->image_before) && $influence_sec->image_before != null)
                                                         <div class="image-container">
-                                                            <img height="200px" width="300px" src="{{ asset('/lure/images') }}/{{ $influence_sec->image_before ?? '' }}" alt="">
+                                                            <img height="200px" width="200px" src="{{ asset('/lure/images') }}/{{ $influence_sec->image_before ?? '' }}" alt="">
                                                         </div>
                                                     @endif
                                                 </div>
@@ -136,7 +136,7 @@
                                                     </div>
                                                     @if(isset($influence_sec->image_after) && $influence_sec->image_after != null)
                                                         <div class="image-container">
-                                                            <img height="200px" width="300px" src="{{ asset('/lure/images') }}/{{ $influence_sec->image_after ?? '' }}" alt="">
+                                                            <img height="200px" width="200px" src="{{ asset('/lure/images') }}/{{ $influence_sec->image_after ?? '' }}" alt="">
                                                         </div>
                                                     @endif
                                                 </div>
